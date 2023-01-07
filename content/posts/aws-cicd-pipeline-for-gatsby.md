@@ -66,36 +66,35 @@ CodePipeline is the AWS CI/CD service that encompasses all the different stages 
 
 For creating a pipeline, head over to the CodePipeline <a href="https://aws.amazon.com/codepipeline/" target="_blank" rol="noopener noreferrer">console</a> and click on Create Pipeline. Give the pipeline an appropriate name and let AWS create a new service role for your pipeline. This role will allow your pipeline to access different services, like CodeBuild, to function properly. Click Next to go to the Source stage. Here, select GitHub as the Source Provider and click on Connect to GitHub button. A new window will pop up where you have to enter your GitHub credentials to make the connection. Select the repository your website is sitting in and the branch you want to deploy (probably the `master` branch). Leave GitHub webhooks selected for change detection. Your final settings should look like this:
 
-![AWS CodePipeline Source Stage](/images/gatsby_source_stage.jpg)
+![AWS CodePipeline Source Stage](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_source_stage_hv3zy3.jpg)
 
 <br/>
 
 Click Next to go to the next stage: Build. Select AWS CodeBuild as Build Provider, select the region you'd like to create your build project in, and click on Create Project. It will pop up a new window for you where you will configure your build. Give your project a name first. Under Environment, leave Manged image selected as Environment image and select Amazon Linux 2 as Operating System (you can also use Ubuntu). For Runtime(s), select Standard (which is the only option, by the way) and for Image, select the most recent version of `x86_64-standard`, which currently is 3.0. Leave New service role selected and enter a Role name (I usually precede the name with `build` but at the end of the day, it doesn't really matter).
 
 
-![AWS CodeBuild Project Config](../images/whilenext_gatsby_build_config_env.jpg)
+![AWS CodeBuild Project Config](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_config_env_vxqyuw.jpg)
 
 <br/>
 
 
 
-
 The last thing that we want to change is under Additional configuration. Click on the title to expand it. Near the bottom, you'll find Environment variables. Put `$BUCKET` for Name and then for value, put the name of your S3 bucket you want to put your website in. It's important to remember that you have to precede the name with `s3://`. So, for instance, if your bucket name is `my-awesome-website`, you should put `s3://my-awesome-website` for value. And that's it. Leave everything as it is and click on Continue to CodePipeline button at the very bottom of the window.
 
-![AWS CodeBuild Project Config Environment Variables](../images/whilenext_gatsby_build_config_env_bucket.jpg)
+![AWS CodeBuild Project Config Environment Variables](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_config_env_bucket_fiftub.jpg)
 
 <br/>
 
 
 Click Next to go to the next stage: Deploy. We don't really need this stage, so click on Skip deploy stage and confirm. You will be presented with the Review page where you can see an overview of your pipeline (see picture below). Click on Create pipeline.
 
-![AWS CodePipeline Review](../images/whilenext_gatsby_pipeline_review.jpg)
+![AWS CodePipeline Review](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_pipeline_review_orgksm.jpg)
 
 <br/>
 
 After creating your pipeline, you will be directed to the pipeline page where you can see your two stages (Sorce and Build). Note that the pipeline will run automatically at this point. The Source stage will pull up your code from GitHub, put it in an S3 bucket (not your destination bucket, though). Then Build will grab the code from that bucket and starts building. It does so by reading the `buildspec.yml` file we put in the root folder of our project. While running, you can click on Details inside the Build stage to see what's going on. One of the cool tabs to watch is the Phase details tab where you can see all the phases that your build is going through one at a time.
 
-![AWS CodePipeline CodeBuild Failed](../images/whilenext_gatsby_build_phases_failed.jpg)
+![AWS CodePipeline CodeBuild Failed](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_phases_failed_yatarz.jpg)
 
 <br/>
 
@@ -112,19 +111,19 @@ Which step do you think the problem is coming from? Besides steps 1 and 2, in th
 
 IAM or Identity and Access Management is the AWS service responsible for, well, managing access. Go to the IAM console, select Roles from the left pane, and find the role you gave to your build project. Click on it and you'll be presented with all the permissions this service currently possesses. As you can see in the picture below, there's only one policy currently associated with this service and that's what we gave it during its configuration.
 
-![AWS IAM Insufficient Policies](../images/whilenext_gatsby_build_iam.jpg)
+![AWS IAM Insufficient Policies](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_iam_clah2q.jpg)
 
 <br/>
 
 This is not enough; we need to have another policy to access our website bucket. To do so, click on Attach policies and search for S3. From the results list, select `AmazonS3FullAccess` by checking the checkbox on its left and then click on Attach policy at the bottom of the page. And that's it. Our build project has now the necessary privileges and it should look like this:
 
-![AWS IAM Sufficient Policies](../images/whilenext_gatsby_build_iam_end.jpg)
+![AWS IAM Sufficient Policies](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_iam_end_nr5o57.jpg)
 
 <br/>
 
 You can now head back to the CodePipeline console, select your pipeline, and then click on Release change for running the pipeline once more. This time, it should go through all the stages and deploy your website. You build phases should now look like this, with all the phases looking green:
 
-![AWS CodePipeline CodeBuild All Passes](../images/whilenext_gatsby_build_phases_allgreen.jpg)
+![AWS CodePipeline CodeBuild All Passes](https://res.cloudinary.com/mkf/image/upload/v1673123525/Blog/gatsby/whilenext_gatsby_build_phases_allgreen_sbhc6d.jpg)
 
 <br/>
 
