@@ -3,12 +3,10 @@ date: "2020-03-04"
 title: "A Simple Parent Class for JADE Agents"
 tags: ["java"]
 author: "masoudkf"
-excerpt: "The JADE Agent class&mdash;which your agents must extend in order to be recognized by the system as an actual agent&mdash;offers the minimum functionality. Although it's totally fine, there's no harm in adding a couple more features to it. The ones I think many agents would like to have right from the start. Here's a simple suggestion."
+description: "The JADE Agent class&mdash;which your agents must extend in order to be recognized by the system as an actual agent&mdash;offers the minimum functionality. Although it's totally fine, there's no harm in adding a couple more features to it. The ones I think many agents would like to have right from the start. Here's a simple suggestion."
 ---
 
 In this article, I will not talk about how JADE works. I assume that you are already familiar with the framework. If this is not the case, you can check out JADE <a target="_blank" href="https://jade.tilab.com/" rel="noopener noreferrer">website</a> first. Let's get to it.
-
-{{< gist spf13 7896402 >}}
 
 Communication is the heart of every agent-based system. If your agents do not talk to one another, what's the point of having them? In order to establish connections between your agents (a.k.a sending messages), you need to have the destination address. In JADE, this address is something called `AID` or Agent ID. The question to ask now is "How do we find the AID of our target agent?" I'm so glad you asked.
 
