@@ -3,7 +3,7 @@ date: "2020-03-16"
 title: "Gatsby on AWS: Creating a CI/CD Pipeline"
 tags: ["aws", "gatsbyjs", "devops"]
 author: "masoudkf"
-excerpt: "AWS S3 service is a perfect place for your static website. It's fast, it's cheap, and it's easy to set up. In this tutorial, we will see how you can serve your Gatsby website from an S3 bucket. More importantly, we will create a CI/CD pipeline&mdash;using GitHub and AWS CodePipeline&mdash;to move our project to an amazing level."
+description: "AWS S3 service is a perfect place for your static website. It's fast, it's cheap, and it's easy to set up. In this tutorial, we will see how you can serve your Gatsby website from an S3 bucket. More importantly, we will create a CI/CD pipeline&mdash;using GitHub and AWS CodePipeline&mdash;to move our project to an amazing level."
 ---
 <a href="https://gatsbyjs.com" rel="noopener noreferrer" target="_blank">Gatsby</a> is a super-fast static website generator that's been getting a lot of attention lately. For one, this very website was (proudly) made with Gatsby. If you're not familiar with it, I encourage you to definitely check it out; spoiler alert: it's awesome. For one, it uses React which we love! (By the way, React <a href="https://reactjs.org" target="_blank" rol="noopener noreferrer">website</a> itself was made with Gatsby)
 
