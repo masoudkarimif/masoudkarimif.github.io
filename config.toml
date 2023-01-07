@@ -37,11 +37,11 @@ googleAnalytics = "G-ZFRSZRJSCV"
 [languages]
   [languages.en]
     title = "masoudkf"
-    subtitle = "A simple theme for Hugo"
+    subtitle = "Developer Blog"
     keywords = ""
     copyright = ""
     menuMore = "Show more"
-    writtenBy = "Written by"
+    writtenBy = "by"
     readMore = "Read more"
     readOtherPosts = "Read other posts"
     newerPosts = "Newer posts"
