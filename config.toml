@@ -17,7 +17,7 @@ enableEmoji = true
   contentTypeName = "posts"
 
   # OS theme is default when not provided, but you can force it to "light" or "dark"
-  defaultTheme = "dark"
+  defaultTheme = "light"
 
   # if you set this to 0, only submenu trigger will be visible
   showMenuItems = 2
