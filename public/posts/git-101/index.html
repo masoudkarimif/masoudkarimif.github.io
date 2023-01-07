@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Git 101 ::
+        masoudkf — A simple theme for Hugo
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="ℹ️ This post is part of the course material for ENSF 381 (W23) at the University of Calgary.
+⚠️ Some commands in this document may not run on Windows machines.
+Introduction # For every software project, we need a tool to keep our files safe, retain a history of changes, attribute those changes to their authors, and have a seamless collaboration between team members. We also want the tool to be fast and easy to use."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="http://example.org/posts/git-101/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="http://example.org/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://example.org/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="http://example.org/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Git 101"/>
+<meta name="twitter:description" content="Git basics. This post is part of the course material for ENSF 381 (W23) at the University of Calgary."/>
+
+
+
+<meta property="og:title" content="Git 101" />
+<meta property="og:description" content="Git basics. This post is part of the course material for ENSF 381 (W23) at the University of Calgary." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/git-101/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-12-10T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-12-10T00:00:00+00:00" /><meta property="og:site_name" content="masoudkf" />
+
+
+
+
+
+
+
+
+
+
+  </head>
+  <body class="dark-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >masoudkf</span
+    >
+  
+</a>
+
+    <span class="header__right">
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">Git 101</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2022-12-10
+        </time>
+
+        
+          
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by masoudkf</span
+        >
+
+
+      
+        <span class="post-read-time"
+          >— 7 min read</span
+        >
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="http://example.org/tags/git/">#git</a>&nbsp;
+        
+          <a href="http://example.org/tags/ucalgary/">#ucalgary</a>&nbsp;
+        
+          <a href="http://example.org/tags/ensf381/">#ensf381</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>ℹ️ This post is part of the course material for ENSF 381 (W23) at the University of Calgary.</p>
+<p>⚠️ Some commands in this document may not run on Windows machines.</p>
+<h2 id="introduction">
+  Introduction
+  <a href="#introduction" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>For every software project, we need a tool to keep our files safe, retain a history of changes, attribute those changes to their authors, and have a seamless collaboration between team members. We also want the tool to be fast and easy to use. Git delivers all that.</p>
+<p>A Git project is referred to as a &ldquo;repository,&rdquo; which contains the complete history of the project from the beginning. A repository consists of individual snapshots called &ldquo;commits.&rdquo; A single commit includes:</p>
+<h4 id="the-project-tree">
+  The project tree
+  <a href="#the-project-tree" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>A structure of nested files and directories representing a complete state of the project:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>project
+</span></span><span style="display:flex;"><span>│   README.md
+</span></span><span style="display:flex;"><span>│   file001.txt    
+</span></span><span style="display:flex;"><span>│
+</span></span><span style="display:flex;"><span>└───folder1
+</span></span><span style="display:flex;"><span>│   │   file011.txt
+</span></span><span style="display:flex;"><span>│   │   file012.txt
+</span></span><span style="display:flex;"><span>│   │
+</span></span><span style="display:flex;"><span>│   └───subfolder1
+</span></span><span style="display:flex;"><span>│       │   file111.txt
+</span></span><span style="display:flex;"><span>│       │   file112.txt
+</span></span><span style="display:flex;"><span>│       │   ...
+</span></span><span style="display:flex;"><span>│   
+</span></span><span style="display:flex;"><span>└───folder2
+</span></span><span style="display:flex;"><span>    │   file021.txt
+</span></span><span style="display:flex;"><span>    │   file022.txt
+</span></span></code></pre></div><h4 id="the-author">
+  The &ldquo;author&rdquo;
+  <a href="#the-author" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Name, email address, and date/time indicating who made the changes that resulted in this project state and when.</p>
+<h4 id="the-committer">
+  The &ldquo;committer&rdquo;
+  <a href="#the-committer" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The same information about the person who added this commit to the repository (which may be different from the author).</p>
+<p><em>Note</em>: author and committer will refer to the same person if you&rsquo;re working on a Git project alone. In group projects, however, they could refer to different people (or even bots!).</p>
+<h4 id="a-commit-message">
+  A &ldquo;commit message&rdquo;
+  <a href="#a-commit-message" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Text used to comment on the changes made by the commit.</p>
+<p>The following figure shows a Git project containing one branch (Main) and 4 snapshots (commits).</p>
+<br/>
+<p align="center">
+  <img src="https://res.cloudinary.com/mkf/image/upload/v1672807490/ENSF-381/CSS/commit.png" width="600"/>
+</p>
+<p align="right">
+<sub>Image Credit: Atlassian</sub>
+</p>
+<br/>
+<hr>
+<h2 id="download-and-install-git">
+  Download and Install Git
+  <a href="#download-and-install-git" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>First, there&rsquo;s a chance you already have Git installed on your system. To make sure, open up a Terminal (command-line) and try this command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git --version
+</span></span></code></pre></div><p>If you see a Git version showing up, you can skip this step. If not, refer to <a href="https://github.com/git-guides/install-git">this tutorial</a> on how to install Git based on your operating system.</p>
+<hr>
+<h2 id="turning-a-folder-into-a-git-project">
+  Turning a Folder Into a Git Project
+  <a href="#turning-a-folder-into-a-git-project" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>In order to turn a folder into a Git project, first <code>cd</code> to the folder in your Terminal: <code>cd /your/folder</code>. Then run <code>git init</code>. If successful, the folder is now tracked via Git. You should also be able to see a hidden folder named <code>.git</code> in your root directory: <code>ls -la</code>.</p>
+<hr>
+<h2 id="create-snapshots-commits">
+  Create Snapshots (commits)
+  <a href="#create-snapshots-commits" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>In order to create snapshots in a Git project, you need to first <em>stage</em> your changes, as commits only create snapshots of the changes already staged within a project. To stage a file, run <code>git add &lt;file-name&gt;</code>. You can also use the handy <code>git add -A</code> command to stage everything in the project. To create a snapshot of staged files and folders, use the <code>git commit -m &quot;commit message&quot;</code> command. The commit message could be anything, but it&rsquo;s highly recommended to put something meaningful, especially if you&rsquo;re working in a team, as it makes it easier to follow changes later.</p>
+<hr>
+<h2 id="check-the-status-of-a-project">
+  Check the Status of a Project
+  <a href="#check-the-status-of-a-project" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>You can use the <code>git status</code> to check the status of a project. Note that you need to be inside the Git project for the command to work. Here&rsquo;s a sample output of the command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>On branch main
+</span></span><span style="display:flex;"><span>Your branch is up to date with <span style="color:#e6db74">&#39;origin/main&#39;</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Changes not staged <span style="color:#66d9ef">for</span> commit:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git restore &lt;file&gt;...&#34;</span> to discard changes in working directory<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        modified:   git-101/README.md
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Untracked files:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add &lt;file&gt;...&#34;</span> to include in what will be committed<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        git-101/images/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>no changes added to commit <span style="color:#f92672">(</span>use <span style="color:#e6db74">&#34;git add&#34;</span> and/or <span style="color:#e6db74">&#34;git commit -a&#34;</span><span style="color:#f92672">)</span>
+</span></span></code></pre></div><p>It tells you which branch you are currently on (<code>main</code> in this case); files not staged yet; and files not being tracked at the moment. To stage a file, or start tracking a file, use the <code>git add &lt;file-name&gt;</code> command.</p>
+<hr>
+<h2 id="branches">
+  Branches
+  <a href="#branches" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>When you first turn a directory to a Git project, Git will create a branch named <code>main</code> for you (you can list your branches by using the <code>git branch</code> command). Changes you make (almost) always happen on a branch. A branch is simply a pointer to a commit. That commit in turn can point to a parent commit, then another parent commit, etc.</p>
+<br/>
+<p align="center">
+  <img src="https://res.cloudinary.com/mkf/image/upload/v1672809629/ENSF-381/CSS/git-branches_oxc8rt.svg" width="600"/>
+</p>
+<p align="right">
+<sub>Image Credit: Atlassian</sub>
+</p>
+<br/>
+<p>Branches are very important when working in a team. We create branches (or branch off an existing branch, as they say) to work on a new feature, bug fix, etc. while at the same time not interfering with other teammates&rsquo; works on other branches. When finished, we will merge our branch to a main branch. Note that I said <em>a</em> main branch and not <em>the</em> <code>main</code> branch. In a real-world scenario, typically, there are multiple main branches associated with different environments (for instance: <code>dev</code>, <code>staging</code>, and <code>production</code>). A main branch is a branch that once merged into, will usually trigger a deployment process and change the state of an environment.</p>
+<p>In order to create a branch, you can use the <code>git branch &lt;branch-name&gt;</code> command. Note that this will not change the current branch for you. You also need to checkout to the branch using the <code>git checkout &lt;branch-name&gt;</code>. There&rsquo;s also a handy command: <code>git checkout -b &lt;branch-name&gt;</code> which will create the branch and checkout to it in one step.</p>
+<hr>
+<h2 id="remote-repository">
+  Remote Repository
+  <a href="#remote-repository" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Remote repository is a server that holds a central copy of your local repository. A central or remote repository is key to working efficiently in a team, as each team member can <code>pull</code> the latest changes from the central repository and <code>push</code> their changes to it. The following figure shows a central (remote) repository and two collaborators working as a team.</p>
+<br/>
+<p align="center">
+  <img src="https://res.cloudinary.com/mkf/image/upload/v1673058440/ENSF-381/Git/remote_azmdq6.svg" width="600"/>
+</p>
+<p align="right">
+<sub>Image Credit: Atlassian</sub>
+</p>
+<br/>
+<p>It&rsquo;s convention to name the remote repository <code>origin</code>. To pull the latest changes from the remote repo, use <code>git pull origin &lt;branch-name&gt;</code>, and to push your changes to the remote repo, use <code>git push origin &lt;branch-name&gt;</code>.</p>
+<hr>
+<h2 id="pull-request">
+  Pull Request
+  <a href="#pull-request" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>A Pull Request (or PR for short) is request to merge your branch (including your latest changes) to a remote branch. Although you may be able to push directly into a branch without creating a PR first, it&rsquo;s always recommended to do so when you&rsquo;re working in a team, as PRs allow collaborators to discuss the changes before merging.</p>
+<br/>
+<p align="center">
+  <img src="https://res.cloudinary.com/mkf/image/upload/v1673058708/ENSF-381/Git/pr_nad4so.png" width="600"/>
+</p>
+<p align="right">
+<sub>Image Credit: CSS Tricks</sub>
+</p>
+<br/>
+<hr>
+<h2 id="most-used-commands-in-this-course">
+  Most-used Commands in This Course
+  <a href="#most-used-commands-in-this-course" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># initialize a git repository</span>
+</span></span><span style="display:flex;"><span>git init
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># add (stage) all changes</span>
+</span></span><span style="display:flex;"><span>git add -A
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># commit staged changes with a message</span>
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;commit message&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># create a new branch and checkout into it</span>
+</span></span><span style="display:flex;"><span>git checkout -b &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># change the current branch to an existing branch</span>
+</span></span><span style="display:flex;"><span>git checkout &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># delete a branch</span>
+</span></span><span style="display:flex;"><span>git branch -D &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see commit logs</span>
+</span></span><span style="display:flex;"><span>git log
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see logs in one line</span>
+</span></span><span style="display:flex;"><span>git log --online
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see status of the current local repository</span>
+</span></span><span style="display:flex;"><span>git status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see the list of local branches </span>
+</span></span><span style="display:flex;"><span>git branch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see the list of both local and remote branches</span>
+</span></span><span style="display:flex;"><span>git branch -a
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># rebase a branch with another one</span>
+</span></span><span style="display:flex;"><span>git rebase &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># see remote repositories linked to the current local repository</span>
+</span></span><span style="display:flex;"><span>git remote -v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># add a new origin (remote repository)</span>
+</span></span><span style="display:flex;"><span>git remote add origin &lt;origin-url&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pull the latest changes from the remote repository</span>
+</span></span><span style="display:flex;"><span>git pull origin &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># push a branch to the remote repository</span>
+</span></span><span style="display:flex;"><span>git push origin &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cache GitHub credentials</span>
+</span></span><span style="display:flex;"><span>git config --global credential.helper <span style="color:#e6db74">&#39;cache --timeout=36000&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># remove git cache</span>
+</span></span><span style="display:flex;"><span>git rm -r --cached .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># set upstream (default remote branch) for a local branch</span>
+</span></span><span style="display:flex;"><span>git push -u origin &lt;branch-name&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># revert a commit</span>
+</span></span><span style="display:flex;"><span>git revert &lt;commit-hash&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># config username and email for a git project</span>
+</span></span><span style="display:flex;"><span>git config user.name <span style="color:#e6db74">&#34;username&#34;</span>
+</span></span><span style="display:flex;"><span>git config user.email <span style="color:#e6db74">&#34;email&#34;</span>
+</span></span></code></pre></div><hr>
+<h2 id="git-cheat-sheet">
+  Git cheat sheet
+  <a href="#git-cheat-sheet" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The commands discussed above&ndash;and more&ndash;are summarized in this cheat sheet available to <a href="https://wac-cdn.atlassian.com/dam/jcr:e7e22f25-bba2-4ef1-a197-53f46b6df4a5/SWTM-2088_Atlassian-Git-Cheatsheet.pdf?cdnVersion=691">download</a>.</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="http://example.org/posts/aws-cicd-pipeline-for-gatsby/">
+                  <span class="button__text">Gatsby on AWS: Creating a CI/CD Pipeline</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >masoudkf</span
+    >
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2023 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
