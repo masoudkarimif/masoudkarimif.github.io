@@ -29,7 +29,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 10
+      nodejs: latest
     commands:
       - echo installing npm packages
       - npm install
