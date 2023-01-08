@@ -13,6 +13,10 @@
     border-bottom: 1px solid var(--border-color);
   }
 
+  &-author {
+    display: none;
+  }
+
   &-meta {
     font-size: 1rem;
     margin-bottom: 10px;

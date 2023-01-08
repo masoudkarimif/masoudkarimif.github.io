@@ -590,6 +590,8 @@ h4:hover a {
       max-width: 660px; } }
   .post:not(:last-of-type) {
     border-bottom: 1px solid var(--border-color); }
+  .post-author {
+    display: none; }
   .post-meta {
     font-size: 1rem;
     margin-bottom: 10px; }
