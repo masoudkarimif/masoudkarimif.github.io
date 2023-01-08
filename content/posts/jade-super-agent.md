@@ -1,5 +1,5 @@
 ---
-date: "2020-03-04"
+date: "2023-01-02"
 title: "A Simple Parent Class for JADE Agents"
 tags: ["java"]
 author: "masoudkf"
