@@ -1,5 +1,5 @@
 ---
-date: "2020-03-16"
+date: "2023-01-01"
 title: "Gatsby on AWS: Creating a CI/CD Pipeline"
 tags: ["aws", "gatsbyjs", "devops"]
 author: "masoudkf"
@@ -17,7 +17,7 @@ This post is not about how to build Gatsby websites; rather, it's on how you can
 <br/>
 
 ### Preparing an S3 bucket for hosting a static website
-I've talked about this extensively in another post. Check it out <a href="http://localhost:8000/aws/host-static-website-using-s3">here</a>.
+I've talked about this extensively in another post. Check it out <a href="/posts/s3-static-website/">here</a>.
 
 <br/>
 

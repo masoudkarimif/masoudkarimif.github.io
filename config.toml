@@ -5,7 +5,7 @@ theme = 'hello-friend'
 baseurl = "/"
 # Add it only if you keep the theme in the `themes` directory.
 # Remove it if you use the theme as a remote Hugo Module.
-paginate = 5
+paginate = 20
 enableEmoji = true
 googleAnalytics = "G-ZFRSZRJSCV"
 
