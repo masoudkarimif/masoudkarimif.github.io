@@ -296,11 +296,6 @@ We use tables only when we want to show tabular data. That might seem like a giv
 <img src="https://res.cloudinary.com/mkf/image/upload/v1673148444/Blog/html/table_kktqtc.png" alt="table" width="200"/>
 <br/>
 
----
-
-## Browser Developer Tools
-
-All major browsers provide developer tools that help you test and debug your application. You can easily change the content, style, and even behaviour of a webpage using the tool. We'll explore the capabilities in the class. You can open the Developer Console on Google Chrome with Option + ⌘ + J (on macOS), or Shift + CTRL + J (on Windows/Linux).
 
 ---
 
@@ -351,6 +346,12 @@ A webpage is just a hierarchy of HTML tags, all within `<html></html>`. This hie
 <sub>Image Credit: Wikipedia</sub>
 </p>
 <br/>
+
+---
+
+## Browser Developer Tools
+
+All major browsers provide developer tools that help you test and debug your application. You can easily change the content, style, and even behaviour of a webpage using the tool. We'll explore the capabilities in the class. You can open the Developer Console on Google Chrome with Option + ⌘ + J (on macOS), or Shift + CTRL + J (on Windows/Linux).
 
 ---
 
