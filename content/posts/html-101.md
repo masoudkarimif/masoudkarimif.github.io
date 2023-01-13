@@ -343,100 +343,104 @@ Here's an HTML page including the tags mentioned above (and some more):
 ```html
 <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <!-- page description that will appear on search engines as link summary -->
-        <meta name="description" content="Student grades and complain form" />
-        <title>UCalgary ENSF 381 Grades</title>
-    </head>
-    <body>
-        <h1>
-            UCalgary ENSF 381 Grades
-        </h1>
-        <p>
-            <!-- this image needs to be available in the same directory as this document -->
-            <img src="ucalgary-logo.png" width="300px"/>
-        </p>
-        <div>
-            <table border="1">
-                <!-- "thead" wraps the headers -->
-                <thead>
-                    <!-- each "th" is a column header -->
-                    <th><strong>First Name</strong></th>
-                    <th><strong>Last Name</strong></th>
-                    <th><strong>Section</strong></th>
-                    <th><strong>Grade</strong></th>
-                </thead>
-                <tbody>
-                    <!-- each "tr" wraps a row -->
-                    <tr>
-                        <!-- each "td" is a column -->
-                        <td>Jean-Luc</td>
-                        <td>Picard</td>
-                        <td>1</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <td>Tasha</td>
-                        <td>Yar</td>
-                        <td>2</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <td>William</td>
-                        <td>Riker</td>
-                        <td>1</td>
-                        <td>B+</td>
-                    </tr>
-                    <tr>
-                        <td>Data</td>
-                        <td>-</td>
-                        <td>2</td>
-                        <td>A+</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <h3>Notes</h3>
-        <ul>
-            <li>Last day for complaining about your grade is yesterday</li>
-            <li>Feel free to complain but I'm not gonna read them</li>
-        </ul>
-        <form>
-            <!-- "input" and "label" are inline elements and -->
-            <!-- we can wrap them in a block element like "p" to break the line -->
-            <p>
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" placeholder="Enter First Name"/>
-                <!-- &nbsp; is the non-breaking space character -->
-                &nbsp;&nbsp;
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" placeholder="Enter Last Name"/>
-                &nbsp;&nbsp;
-                <label for="starship">Starship</label>
-                <!-- select creates a dropdown -->
-                <select name="" id="starship">
-                    <option value="NCC-1701-D">USS Enterprise (NCC-1701-D)</option>
-                    <option value="NCC-1701-C">USS Enterprise (NCC-1701-C)</option>
-                </select>
-            </p>
-            <p>
-                <!-- textarea creates a multi-line input -->
-                <!-- its size is specified with "cols" and "rows" attributes -->
-                <textarea id="complain" cols="30" rows="10"
-                    placeholder="Your Complain Here"></textarea>
-            </p>
-            <p>
-                <!-- checked attribute at the end makes the box checked -->
-                <input type="checkbox" checked>I agree to the fact that my
-                complain means nothing to you
-            </p>
-            <p>
-                <input type="submit" value="Submit Complain to Nowhere">
-            </p>
-        </form>
-    </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!-- page description that will appear on search engines as link summary -->
+  <meta name="description" content="Student grades and complain form">
+  <title>UCalgary ENSF 381 Grades</title>
+</head>
+
+<body>
+  <h1>
+    UCalgary ENSF 381 Grades
+  </h1>
+  <p>
+    <!-- this image needs to be available in the same directory as this document -->
+    <img src="ucalgary-logo.png" width="300" alt="ucalgary logo">
+  </p>
+  <div>
+    <table border="1">
+      <!-- "thead" wraps the headers -->
+      <thead>
+        <tr>
+          <!-- each "th" is a column header -->
+          <th><strong>First Name</strong></th>
+          <th><strong>Last Name</strong></th>
+          <th><strong>Section</strong></th>
+          <th><strong>Grade</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- each "tr" wraps a row -->
+        <tr>
+          <!-- each "td" is a column -->
+          <td>Jean-Luc</td>
+          <td>Picard</td>
+          <td>1</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>Tasha</td>
+          <td>Yar</td>
+          <td>2</td>
+          <td>A</td>
+        </tr>
+        <tr>
+          <td>William</td>
+          <td>Riker</td>
+          <td>1</td>
+          <td>B+</td>
+        </tr>
+        <tr>
+          <td>Data</td>
+          <td>-</td>
+          <td>2</td>
+          <td>A+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Notes</h3>
+  <ul>
+    <li>Last day for complaining about your grade is yesterday</li>
+    <li>Feel free to complain but I'm not gonna read them</li>
+  </ul>
+  <form>
+    <!-- "input" and "label" are inline elements and -->
+    <!-- we can wrap them in a block element like "p" to break the line -->
+    <p>
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" placeholder="Enter First Name">
+      <!-- &nbsp; is the non-breaking space character -->
+      &nbsp;&nbsp;
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" placeholder="Enter Last Name">
+      &nbsp;&nbsp;
+      <label for="starship">Starship</label>
+      <!-- select creates a dropdown -->
+      <select name="starship" id="starship">
+        <option value="NCC-1701-D">USS Enterprise (NCC-1701-D)</option>
+        <option value="NCC-1701-C">USS Enterprise (NCC-1701-C)</option>
+      </select>
+    </p>
+    <p>
+      <!-- textarea creates a multi-line input -->
+      <!-- its size is specified with "cols" and "rows" attributes -->
+      <textarea id="complain" cols="30" rows="10" placeholder="Your Complain Here"></textarea>
+    </p>
+    <p>
+      <!-- checked attribute at the end makes the box checked -->
+      <input type="checkbox" checked>I agree to the fact that my
+      complain means nothing to you
+    </p>
+    <p>
+      <input type="submit" value="Submit Complain to Nowhere">
+    </p>
+  </form>
+</body>
+
 </html>
 ```
 
