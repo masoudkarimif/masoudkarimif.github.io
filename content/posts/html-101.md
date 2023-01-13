@@ -150,23 +150,6 @@ There are also attributes that only apply to certain elements. For example, the 
 
 ---
 
-## Relative vs Absolute Links
-
-When it comes to linking a file or a page on your website, there are usually two ways to do it:
-
-**Relative** paths start from your current location, whereas **Absolute** paths are the full URL of a file. 
-
-```html
-<!-- using relative path -->
-<!-- it goes one level up (../) and then inside the "about" folder and then "index.html -->
-<a href="../about/index.html">About</a>
-
-<!-- absolute path starting with the schema (https://) -->
-<a href="https://mywebsite.com/about/index.html">About</a>
-```
-
----
-
 ## Images
 
 We can define images and illustrations using the `<figure></figure>` element. It also gives us the ability to add a caption.
@@ -181,6 +164,32 @@ We can define images and illustrations using the `<figure></figure>` element. It
 The `alt` attribute will show up if, for any reason, the browser cannot show the image. For instance, if the file path is wrong or there is a problem with the connection.
 
 Note that for the `src` attribute, you can use both relative (if the file is on your servers) and absolute paths, as discussed before.
+
+---
+
+## Links
+Links are defined by the `<a>` tag. The `href` attribute is where the address (link) goes, and the `target` attribute specifies where the link opens.
+
+```html
+<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Complete HTML Course</a>
+```
+
+`_blank` opens the link in a new tab.
+
+### Relative vs Absolute Links
+
+When it comes to linking a file or a page on your website, there are usually two ways to do it:
+
+**Relative** paths start from your current location, whereas **Absolute** paths are the full URL of a file. 
+
+```html
+<!-- using relative path -->
+<!-- it goes one level up (../) and then inside the "about" folder and then "index.html -->
+<a href="../about/index.html">About</a>
+
+<!-- absolute path starting with the schema (https://) -->
+<a href="https://mywebsite.com/about/index.html">About</a>
+```
 
 ---
 
