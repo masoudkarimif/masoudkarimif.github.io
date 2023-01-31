@@ -1,11 +1,10 @@
 ---
 date: "2022-12-14"
 title: "JavaScript 101"
-tags: ["javascript", "ucalgary", "ensf381"]
+tags: ["javascript", "ucalgary"]
 author: "masoudkf"
 description: "JavaScript basics. This post is part of the course material for [ENSF 381 (W23)](https://contacts.ucalgary.ca/info/enel/courses/w23/ENSF381?destination=courses%2Fw23) at the University of Calgary."
 ---
-:information_source: This post is part of the course material for [ENSF 381 (W23)](https://contacts.ucalgary.ca/info/enel/courses/w23/ENSF381?destination=courses%2Fw23) at the University of Calgary.
 
 ## The Basics
 

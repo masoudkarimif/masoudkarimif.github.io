@@ -1,11 +1,10 @@
 ---
 date: "2022-12-12"
 title: "HTML 101"
-tags: ["html", "ucalgary", "ensf381"]
+tags: ["html", "ucalgary"]
 author: "masoudkf"
 description: "HTML basics. This post is part of the course material for [ENSF 381 (W23)](https://contacts.ucalgary.ca/info/enel/courses/w23/ENSF381?destination=courses%2Fw23) at the University of Calgary."
 ---
-:information_source: This post is part of the course material for [ENSF 381 (W23)](https://contacts.ucalgary.ca/info/enel/courses/w23/ENSF381?destination=courses%2Fw23) at the University of Calgary.
 
 ## Overview
 
