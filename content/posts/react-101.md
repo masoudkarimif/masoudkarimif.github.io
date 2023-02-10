@@ -153,3 +153,66 @@ function Counter() {
   );
 }
 ```
+
+---
+
+### React Router
+
+React Router gives you the ability to simulate URL navigations by loading/unloading React components. For example, if the URL is `/about`, load (show) the `About` component; if it's `/skills`, unload the `About` component and load the `Skills` component instead.
+
+In order to use React Router, you first need to install it using `npm` as it doesn't come pre-installed with `create-react-app`. Make sure you're at the root of your React project and then run:
+```bash
+npm install react-router-dom
+```
+
+You can now use React Router in your project. Create a component named `About` and another one named `Skills`:
+
+`src/About.js`:
+```javascript
+function About() {
+  return (
+    <h1>About</h1>
+  )
+};
+
+export default About;
+```
+
+`src/Skills.js`:
+```javascript
+function Skills() {
+  return (
+    <h1>Skills</h1>
+  )
+};
+
+export default Skills;
+```
+
+Then in your `App.js` file:
+
+`src/App.js`:
+```javascript
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import About from "./About";
+import Skills from "./Skills";
+
+function App() {
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<About />}></Route>
+        <Route path="/skills" element={<Skills />}></Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+
+export default App;
+```
+
+We declared two routes:
+- `/` which loads the `About` component
+- `/skills` which loads the `Skills` component
+
+Run the application. It should show the `About` component. Add `/skills` to the end of the URL and you should see the `Skills` component instead.
