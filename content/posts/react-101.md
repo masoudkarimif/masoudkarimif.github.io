@@ -263,3 +263,97 @@ We declared two routes:
 - `/skills` which loads the `Skills` component
 
 Run the application. It should show the `About` component. Add `/skills` to the end of the URL and you should see the `Skills` component instead.
+
+### Page Parameters
+Sometimes, you need to pass a page parameter to a page component. For example, you have a component names User that shows the profile of a specifc user. In order to get their profile, you need a username, which you've decided to get from the URL. For example, the URL `yourwebsite.com/users/rick` should show the profile of the user `rick`, and `yourwebsite.com/users/alice` should show the profile of the user `alice`. `rick` and `alice` are page parameters in this example, like function parameters.
+
+It's not feasible to create a route for every single username you have, therefore you need something more dynamic. That's where page parameters come in. In React Route, you can define page parameters using the `:parameter-name` syntax inside your `path`. For example: `path="/users/:userId` will create a page parameter named `userId` which you can access using a special hook from React Router named `useParams`. Let's see an example:
+
+```jsx
+<BrowserRouter>
+  <Routes>
+    <Route path="/users/:userId" element={<User />}></Route>
+  </Routes>
+</BrowserRouter>
+```
+
+This will create a route with a page parameter. To access the `userId` parameter inside the User component:
+
+```jsx
+import { useParams } from "react-router-dom";
+// ...
+// useParams is an object with properties named after page parameters
+// using object destructuring, we can get the parameter we want
+const { userId } = useParams();
+```
+
+### The Layout Route
+More often than not, we want to have the same elements on every page: headers, navigations, footers. Instead of repeating them in all the page components, React Router suggests using a special route, called the Layout Route. The Layout Route is route without any `path` that wraps one or more routes. All the child routes (components) will then render what the Layout Route (component) has, plus their own stuff. Here's an example:
+
+```jsx
+function App() {
+  return(
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<About />}></Route>
+          <Route path="/skills" element={<Skills />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  )
+}
+```
+
+It's important to understand that the Layout Route is still a component. Inside the Layout component, we can use the `<Outlet />` component from React Router to inject the component that matches the route inside the Layout component. Example:
+
+`Layout.js`
+```jsx
+import { Outlet } from "react-router-dom";
+
+function Layout() {
+  return (
+    <>
+      <header>Header</header>
+      <div id="content">
+        {/* child components get injected here and replace <Outlet /> */}
+        <Outlet />
+      </div>
+      <footer>Footer</footer>
+    </>
+  )
+}
+```
+
+For instance, if the path is `/skills`, we will render the Layout component, which will render the Skills component where the `<Outlet />` is. It's as if we are rendering this:
+
+```jsx
+<>
+  <header>Header</header>
+  <div id="content">
+    <h1>Skills</h1>
+  </div>
+  <footer>Footer</footer>
+</>
+```
+
+#### Passing Props to Outlet
+We can also pass props to the `<Outlet />` component using the `context` property. Whatever component that replaces `<Outlet />` in runtime, will be able to retrieve the props using the `useOutletContext` hook from React Router. Example:
+
+```jsx
+// inside the Layout component.
+// 
+// if we want to pass more than one element, we need to pass it through an array
+<Outlet context={[someParameter, someFunction]}/>
+```
+
+```jsx
+// inside the component that replaces Outlet in runtime
+// 
+import { useOutletContext } from "react-router-dom";
+// since the context is an array, we can destructure
+// to get the items as individual variables
+const [someParameter, someFunction] = useOutletContext();
+```
+
+
