@@ -158,7 +158,7 @@ function Counter() {
 ```
 
 ### useEffect
-We use `useEffect` to add side effects to our components. Side effects are what happens when a components renders or re-renders. Components (re-)render in 3 scenarios:
+We use `useEffect` to add side effects to our components. Side effects are what happens when a component renders or re-renders. Components (re-)render in 3 scenarios:
 - The first time they load to the page
 - Every time their states change
 - Every time their props change
