@@ -483,6 +483,34 @@ console.log(result); // ["Go","Rust","Java"]
 
 ---
 
+### localStorage
+The `Window` object has a storage API we can use to store some data on the current domain (address). The data will persist until it's deleted, but will only be available on the browser and the device that were used to store the data. For instance, if you use the `localStorage` to persist some data on Chrome, it won't be available when you access the same address on Firefox, or on Chrome on a different device. It also won't be available in private mode. That's why ultimately, applications need to have a central backend to store the data across browsers and devices.
+
+With JavaScript, we can store and then retrieve data to and from `localStorage` like this:
+
+```js
+// store some data with the key 'name'
+localStorage.setItem('name', 'alice');
+
+// retrieve the data with the same key
+const name = localStorage.getItem('name');
+console.log(name); // alice
+```
+
+More often than not, though, you want to store data with some structure. The most common structure when we work with JavaScript is JSON. In order to store and retrieve data in JSON format, we need to use the `JSON.stringify(data)` and `JSON.parse(data)` functions. Example:
+
+```js
+// use stringify when storing structured data
+const data = {name: "Alice"};
+localStorage.setItem('somekey', JSON.stringify(data));
+
+// use parse when reading the data
+const item = JSON.parse(localStorage.getItem('somekey'));
+console.log(item.name); // Alice
+```
+
+---
+
 ## The DOM API
 The JavaScript DOM API is the way to interact with the--surprise, surprise--DOM. We use the DOM API to:
 - Change the attributes of HTML elements
