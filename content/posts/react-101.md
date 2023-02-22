@@ -356,4 +356,17 @@ import { useOutletContext } from "react-router-dom";
 const [someParameter, someFunction] = useOutletContext();
 ```
 
+### useNavigate
+You can use the `useNavigate` hook to navigate to a different page. This is useful when you want to do some stuff when an event happens (such as clicking a button), and then navigate to a different page afterwards:
+
+```jsx
+import { useNavigate } from "react-router-dom";
+const navigate = useNavigate();
+
+const buttonClicked = ()=> {
+  // do some stuff here
+  // then go to the home page
+  navigate(`/home`);
+}
+```
 
