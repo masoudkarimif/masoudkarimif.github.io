@@ -60,6 +60,7 @@ The first parameter is the path(s) requested by the user. To match all paths on 
 
 Here's how it should look like:
 
+`public/_redirects`
 ```bash
 /* /index.html 200
 ```
