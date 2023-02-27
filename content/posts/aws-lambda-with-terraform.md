@@ -40,7 +40,7 @@ AWS offers a generous [Free Tier](https://aws.amazon.com/free/) for new users fo
 ### S3
 Simple Storage Service (S3) is a cloud-based storage offered by AWS. It's highly available (almost never goes down), scalable (can handle thousands of requests per second), and secure (offers several methods of encryption). You can use S3 to host a data lake (a central location for all your data); host a static website; archive data at a very low cost; and build cloud applications. S3 is the backbone of many services on AWS. One of those services is Lambda--which we'll be talking about in a bit. 
 
-In order to upload a file to S3, we first need a **bucket**. Buckets are a way of organizing your data on AWS. By default, you can have up to 100 buckets per AWS account. Bucket names **must be unique** worldwide. You can't create an S# bucket with the same name as somebody else's, even though they're using a different AWS account.
+In order to upload a file to S3, we first need a **bucket**. Buckets are a way of organizing your data on AWS. By default, you can have up to 100 buckets per AWS account. Bucket names **must be unique** worldwide. You can't create an S3 bucket with the same name as somebody else's, even though they're using a different AWS account.
 
 <br>
 <p align="center">
