@@ -271,7 +271,7 @@ locals {
 }
 
 # create a role for the Lambda function to assume
-# every service on AWS should first assume a role and
+# (almost) every service on AWS should first assume a role and
 # then any policy attached to the role will give permissions
 # to the service so it can interact with other AWS services
 # see the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
