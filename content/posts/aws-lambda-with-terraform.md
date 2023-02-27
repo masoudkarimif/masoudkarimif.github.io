@@ -25,7 +25,7 @@ You've probably heard this before: _There's no cloud; it's just someone else's c
 ### AWS
 [Amazon Web Services](https://aws.amazon.com/) (AWS) is the first and biggest cloud provider today with more than 34% of the market. AWS has regions all around the world. You can check the whole map [here](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/). It's always recommended to go with the region closest to your business and users as you would be able to offer the best service (faster response time). Some big organizations, such as Netflix, have multiple regions to offer the best service to their customers.
 
-AWS offers a generous Free Tier for new users for up to 12 months. During this period, you could use a variety (not all!) of services for free, provided you stay below the Free Tier threshold. Some popular services offered by the Free Tier are Lambda, S3, DynamoDB, EC2, and API Gateway. You can create a new account [here](https://portal.aws.amazon.com/billing/signup#/start/email).
+AWS offers a generous [Free Tier](https://aws.amazon.com/free/) for new users for up to 12 months (some services have a free tier forever, not just for 12 months). During this period, you could use a variety (not all!) of services for free, provided you stay below the Free Tier threshold. Some popular services offered by the Free Tier are Lambda, S3, DynamoDB, EC2, and API Gateway. You can create a new account [here](https://portal.aws.amazon.com/billing/signup#/start/email).
 
 <br>
 <p align="center">
