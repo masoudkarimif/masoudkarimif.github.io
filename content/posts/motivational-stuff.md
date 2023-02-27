@@ -9,7 +9,7 @@ description: "A collection of videos and quotes I have found helpful whenever I 
 This is a collection of videos and quotes I have found helpful whenever I felt like giving up what I was doing. Not that I’ve followed all of them all the time; but I have tried, and still am.
 
 ## On Being Passionate About What You're Doing
-Here's Steve Jobs (RIP) talking about why you need to love what you're doing. To get to the top of your field (regardless of the field), you need to continue doing it for a sustainable period of time. And that's hard no matter what you're doing. If you don't love it, though, _"any rational person would give up,"_ he says. And if you give up early, you'll never get to the top 1% of your field. In a nutshell, choose something you love doing, otherwise, you'll probably end up having a mediocre career in your respected field.
+Here's Steve Jobs (RIP) talking about why you need to love what you're doing. To get to the top of your field (regardless of the field), you need to continue doing it _"over a sustained period of time"_. And that's hard no matter what you're doing. If you don't love it, though, _"any rational person would give up,"_ he says. And if you give up early, you'll never get to the top 1% of your field. In a nutshell, choose something you love doing, otherwise, you'll probably end up having a mediocre career in your respected field.
 
 {{< youtube PznJqxon4zE >}}
 
