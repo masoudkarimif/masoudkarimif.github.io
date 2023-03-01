@@ -54,9 +54,21 @@ In order to upload a file to S3, we first need a **bucket**. Buckets are a way o
 ### CloudWatch
 CloudWatch is an AWS service that collects and aggregates logs from other services (such as Lambda) on AWS. Logs are the outputs produced when running code. An example of that is the `print` method in Python; whatever you `print` is considered an output, and therefore logs. 
 
-Two main concepts in CloudWatch are Log Groups and Log Streams. A log group is a group of log streams that share the same retention period (how log before they get expired and deleted from CloudWatch). In case of Lambda functions, each function is associated with a log group named `/aws/lambda/<name-of-the-lambda-function>`.
+Two main concepts in CloudWatch are Log Groups and Log Streams. A log group is a group of log streams that share the same retention period (how long before they get expired and deleted from CloudWatch). In case of Lambda functions, each function is associated with a log group named `/aws/lambda/<name-of-the-lambda-function>`.
 
 Inside each log group, there are a number of log streams. Each log stream is a sequence of logs that share the same source.
+
+### IAM
+IAM (or Identity and Access Management) is an AWS service that specifies _who_ or _what_ can access AWS resources. There are a few key concepts when it comes to IAM:
+
+- **IAM Identity**: an IAM Identity provides access to an AWS account. Anyone or anything that wants to access AWS services, needs an IAM Identity first
+- **IAM User**: an IAM Identity who has specific permissions
+- **IAM Role**: like an IAM User, an IAM Role is also an IAM Identity that has specific permissions. Unlike an IAM User, however, an IAM Role is not uniquely associated with one person. Rather, it can be assumed by anyone or anything that needs it (e.g. an AWS service that wants to access another AWS service)
+- **IAM Policy**: a document containing one or more permissions to grant or deny access to AWS services
+
+Examples:
+- **A person wants to have access to an AWS service.** They first need an IAM Identity. They can create an IAM User for that. Then, they need to attach one or more policies to the IAM User granting access to the appropriate service
+- **An AWS service, Lambda, wants to have access to another AWS service, CloudWatch, to be able to publish logs.** Lambda needs an IAM Identity first. Since only people can use IAM users, the only choice is an IAM Role. Then, Lambda needs a policy to be attached to the role granting access to publish logs to CloudWatch
 
 
 ### Lambda
