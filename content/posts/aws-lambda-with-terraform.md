@@ -51,6 +51,13 @@ In order to upload a file to S3, we first need a **bucket**. Buckets are a way o
 </p>
 <br/>
 
+### CloudWatch
+CloudWatch is an AWS service that collects and aggregates logs from other services (such as Lambda) on AWS. Logs are the outputs produced when running code. An example of that is the `print` method in Python; whatever you `print` is considered an output, and therefore logs. 
+
+Two main concepts in CloudWatch are Log Groups and Log Streams. A log group is a group of log streams that share the same retention period (how log before they get expired and deleted from CloudWatch). In case of Lambda functions, each function is associated with a log group named `/aws/lambda/<name-of-the-lambda-function>`.
+
+Inside each log group, there are a number of log streams. Each log stream is a sequence of logs that share the same source.
+
 
 ### Lambda
 Lambda is the Function As A Service (FaaS) offering from AWS. It's a serverless computing offering that lets you run almost any type of code without the need to provision or maintain a server. Lambda is one of the most popular services on AWS and can be hooked up to more than 200 AWS services (including S3, SQS, SNS, and API Gateway) to build a cloud application. Lambda supports several runtimes (languages), including Python, Nodejs, and Go. You can find the full list [here](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html). 
