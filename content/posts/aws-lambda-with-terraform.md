@@ -270,6 +270,17 @@ Now, we need to package our code and put it in our S3 bucket we created in the p
 zip artifact.zip main.py
 ```
 
+In case our function has dependencies (external libraries), we need to add them to the deployment package as well. Assuming all the external libraries are listed in the `requirements.txt` file, here's how we can package them along with the application code:
+
+```bash
+# we create a new folder named "package" and install the dependecies there.
+# we then add our application code (files with the ".py" extension) to the 
+# zip file
+mkdir ./package && pip install -r requirements.txt -t ./package
+cd package && zip -r9 ../artifact.zip .
+cd ../ && zip -g artifact.zip *.py
+```
+
 We can now push it to our S3 bucket using the AWS CLI:
 
 ```bash
