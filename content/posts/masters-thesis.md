@@ -1,0 +1,11 @@
+---
+date: "2023-03-03"
+title: "My Master's Thesis"
+tags: ["ucalgary", "reinforcement learning", "embedded systems", "optimization", "thesis"]
+author: "masoudkf"
+description: "My master's thesis titled \"A Power-Aware Reinforcement Learning Technique for Memory Allocation in Real-time Embedded Systems\"."
+---
+
+My master's thesis is available in full on UCalgary's [website](https://prism.ucalgary.ca/handle/1880/112938). Here's the abstract:
+
+> Embedded systems are ubiquitous in today's world. They are used in a vast number of applications, from medical devices to spacecraft. Two of the main characteristics of such systems are real-time constraints and the lack of reliable energy sources. As cache memories negatively contribute to these two challenges, embedded systems have adopted a new concept called scratch-pad memories (SPMs). To further reduce power consumption, hybrid SPMs composed of Static RAMs (SRAMs) and non-volatile memories (NVMs) have been introduced. Compared to SRAMs, NVMs offer low leakage power and high density while suffering from high energy consumption during write activities. As such, numerous studies have been done on performing memory allocation in hybrid architectures. As memory allocation is an NP-complete problem, traditional approaches fall short due to their timing and memory complexities. Therefore, previous studies have offered alternative techniques to resolve this problem in significantly shorter times. In this work, I propose a reinforcement learning technique to tackle the memory allocation problem in a hybrid architecture. As the results showed, the proposed technique can provide a near-optimal solution - only 5.6% less efficient on average - in a substantially shorter time. To evaluate the algorithm's effectiveness, I compared the results with a greedy technique and a Genetic Algorithm (GA). The results showed that the proposed technique could reduce the average energy consumption by 35.84% and 5.1% compared to the greedy technique and GA, respectively. While the improvements gained by the proposed technique was negligible compared to the GA, it could outperform the GA in simulation time once the learning phase was complete. Particularly, the experiments on 15 soft real-time task frames showed a 35.1% reduction in the average simulation time.
