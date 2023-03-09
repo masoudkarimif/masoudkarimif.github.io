@@ -1,0 +1,101 @@
+<!doctype html><html lang=en><head><title>AWS DynamoDB CRUD with Boto3 ::
+masoudkf — Developer Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="DynamoDB # DynamoDB is a fully managed, high-performance, NoSQL database service provided by AWS. It is designed to provide fast and predictable performance with seamless scalability. DynamoDB is a non-relational database that allows users to store and retrieve data, while maintaining low latency and high availability. DynamoDB is a schema-less database, which means that users can store data in any format without defining a schema beforehand.
+DynamoDB stores data in tables."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://masoudkarimif.github.io/posts/aws-dynamodb-crud-with-lambda-terraform/><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=https://masoudkarimif.github.io/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=https://masoudkarimif.github.io/img/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=https://masoudkarimif.github.io/img/favicon.png><link href=/fonts/Inter-Italic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Regular.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Medium.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-MediumItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Bold.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-BoldItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><meta name=twitter:card content="summary"><meta name=twitter:title content="AWS DynamoDB CRUD with Boto3"><meta name=twitter:description content="We create a DynamoDB table with Terraform, and perform CRUD operations using the AWS SDK for Python (Boto3)."><meta property="og:title" content="AWS DynamoDB CRUD with Boto3"><meta property="og:description" content="We create a DynamoDB table with Terraform, and perform CRUD operations using the AWS SDK for Python (Boto3)."><meta property="og:type" content="article"><meta property="og:url" content="https://masoudkarimif.github.io/posts/aws-dynamodb-crud-with-lambda-terraform/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-03-08T00:00:00+00:00"><meta property="article:modified_time" content="2023-03-08T00:00:00+00:00"><meta property="og:site_name" content="masoudkf"><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFRSZRJSCV"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZFRSZRJSCV",{anonymize_ip:!1})}</script></head><body class=light-theme><div class=container><header class=header><span class=header__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>masoudkf</span></a>
+<span class=header__right><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/about>About</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/about>About</a></li></ul></nav><span class=menu-trigger><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span><span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41c10.4934.0 19-8.5066 19-19C41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg></span></span></span></header><div class=content><article class=post><h1 class=post-title>AWS DynamoDB CRUD with Boto3</h1><div class=post-meta><time class=post-date>2023-03-08</time>
+<span class=post-author>— by masoudkf</span>
+<span class=post-read-time>— 3 min read</span></div><span class=post-tags><a href=https://masoudkarimif.github.io/tags/aws/>#aws</a>&nbsp;
+<a href=https://masoudkarimif.github.io/tags/dynamodb/>#dynamodb</a>&nbsp;
+<a href=https://masoudkarimif.github.io/tags/boto3/>#boto3</a>&nbsp;
+<a href=https://masoudkarimif.github.io/tags/terraform/>#terraform</a>&nbsp;</span><div class=post-content><h2 id=dynamodb>DynamoDB
+<a href=#dynamodb class=h-anchor aria-hidden=true>#</a></h2><p>DynamoDB is a fully managed, high-performance, NoSQL database service provided by AWS. It is designed to provide fast and predictable performance with seamless scalability. DynamoDB is a non-relational database that allows users to store and retrieve data, while maintaining low latency and high availability. DynamoDB is a schema-less database, which means that users can store data in any format without defining a schema beforehand.</p><p>DynamoDB stores data in tables. All tables must either have a Primary Key (also known as Partition Key), or a Primary Key and a Sort Key (also knows as composite key). In a table that has only a partition key, no two items can have the same partition key value. In a table that has a partition key and a sort key, it&rsquo;s possible for multiple items to have the same partition key value. However, those items must have different sort key values.</p><h3 id=dynamodb-data-types>DynamoDB Data Types
+<a href=#dynamodb-data-types class=h-anchor aria-hidden=true>#</a></h3><ul><li><p><strong>Scalar Types</strong>: A scalar type can represent exactly one value. The scalar types are number, string, binary, Boolean, and null.</p></li><li><p><strong>Document Types</strong>: A document type can represent a complex structure with nested attributes, such as you would find in a JSON document. The document types are list and map.</p></li></ul><h3 id=create-a-dynamodb-table-with-terraform>Create a DynamoDB Table with Terraform
+<a href=#create-a-dynamodb-table-with-terraform class=h-anchor aria-hidden=true>#</a></h3><script type=application/javascript src=https://gist.github.com/masoudkarimif/b0738cc57bcbf558970aaa77bd118d36.js></script><h2 id=boto3>Boto3
+<a href=#boto3 class=h-anchor aria-hidden=true>#</a></h2><p>AWS <a href=https://boto3.amazonaws.com/v1/documentation/api/latest/index.html>Boto3</a> is a Python software development kit (SDK) that enables developers to write Python scripts and applications to interact with various AWS services programmatically. Boto3 allows developers to use Python code to interact with AWS resources instead of logging into the AWS Management Console or using command-line tools.</p><h3 id=boto3-and-dynamodb>Boto3 and DynamoDB
+<a href=#boto3-and-dynamodb class=h-anchor aria-hidden=true>#</a></h3><p>You can use Boto3 to interact with DynamoDB. Here&rsquo;s an example of CRUD (Create, Read, Update, and Delete) operations on the <code>students</code> table we created earlier:</p><p><code>main.py</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> boto3
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># create a dynamodb resource</span>
+</span></span><span style=display:flex><span>dynamodb_resource <span style=color:#f92672>=</span> boto3<span style=color:#f92672>.</span>resource(<span style=color:#e6db74>&#34;dynamodb&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># create a dynamodb table object</span>
+</span></span><span style=display:flex><span>table <span style=color:#f92672>=</span> dynamodb_resource<span style=color:#f92672>.</span>Table(<span style=color:#e6db74>&#34;students&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add_item</span>(student):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># read the docs: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb/table/put_item.html</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> table<span style=color:#f92672>.</span>put_item(Item<span style=color:#f92672>=</span>student)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_item</span>(student_id):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># read the docs: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb/table/get_item.html</span>
+</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> table<span style=color:#f92672>.</span>get_item(Key<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;student_id&#34;</span>: student_id})
+</span></span><span style=display:flex><span>    item <span style=color:#f92672>=</span> response[<span style=color:#e6db74>&#34;Item&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> item
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>update_item</span>(student):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># read the docs: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb/table/update_item.html</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> table<span style=color:#f92672>.</span>update_item(
+</span></span><span style=display:flex><span>        Key<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;student_id&#34;</span>: student[<span style=color:#e6db74>&#34;student_id&#34;</span>],
+</span></span><span style=display:flex><span>        },
+</span></span><span style=display:flex><span>        UpdateExpression<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;SET grades = :grades&#34;</span>,
+</span></span><span style=display:flex><span>        ExpressionAttributeValues<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;:grades&#34;</span>: student[<span style=color:#e6db74>&#34;grades&#34;</span>]},
+</span></span><span style=display:flex><span>    )
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>delete_item</span>(student_id):
+</span></span><span style=display:flex><span>    <span style=color:#75715e># read the docs: https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/dynamodb/table/delete_item.html</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> table<span style=color:#f92672>.</span>delete_item(
+</span></span><span style=display:flex><span>        Key<span style=color:#f92672>=</span>{
+</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;student_id&#34;</span>: student_id,
+</span></span><span style=display:flex><span>        }
+</span></span><span style=display:flex><span>    )
+</span></span></code></pre></div><p>And some tests to make sure our functions work properly:</p><p><code>test_main.py</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># item for testing</span>
+</span></span><span style=display:flex><span>item <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;student_id&#34;</span>: <span style=color:#ae81ff>3098390</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;first_name&#34;</span>: <span style=color:#e6db74>&#34;Alice&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;last_name&#34;</span>: <span style=color:#e6db74>&#34;Wonderland&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;grades&#34;</span>: [<span style=color:#ae81ff>90</span>, <span style=color:#ae81ff>85</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>94</span>],
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># run pytest -v -k &#39;test_add&#39; to run this specific test</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_add_item</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> add_item(item)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># run pytest -v -k &#39;test_get&#39; to run this specific test</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_get_item</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> get_item(item[<span style=color:#e6db74>&#34;student_id&#34;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res[<span style=color:#e6db74>&#34;first_name&#34;</span>] <span style=color:#f92672>==</span> item[<span style=color:#e6db74>&#34;first_name&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res[<span style=color:#e6db74>&#34;last_name&#34;</span>] <span style=color:#f92672>==</span> item[<span style=color:#e6db74>&#34;last_name&#34;</span>]
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res[<span style=color:#e6db74>&#34;grades&#34;</span>] <span style=color:#f92672>==</span> item[<span style=color:#e6db74>&#34;grades&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># run pytest -v -k &#39;test_update&#39; to run this specific test</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_update_item</span>():
+</span></span><span style=display:flex><span>    updated_item <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;student_id&#34;</span>: <span style=color:#ae81ff>3098390</span>, <span style=color:#e6db74>&#34;grades&#34;</span>: [<span style=color:#ae81ff>90</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>100</span>]}
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> update_item(updated_item)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># sleep for 1 second to make sure the updated record is consistent across all AZs</span>
+</span></span><span style=display:flex><span>    time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> get_item(updated_item[<span style=color:#e6db74>&#34;student_id&#34;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res[<span style=color:#e6db74>&#34;grades&#34;</span>] <span style=color:#f92672>==</span> updated_item[<span style=color:#e6db74>&#34;grades&#34;</span>]
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># run pytest -v -k &#39;test_delete&#39; to run this specific test</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_delete_item</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> delete_item(item[<span style=color:#e6db74>&#34;student_id&#34;</span>])
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>is</span> <span style=color:#f92672>not</span> <span style=color:#66d9ef>None</span>
+</span></span></code></pre></div><p>To run the test cases using <code>pytest</code>, first make sure you have <code>pytest</code> installed (<code>pip install pytest</code>). You can then use <code>pytest -v</code> to run all the tests in the order they are declared in the file. The gotcha here is that because you&rsquo;re interacting with AWS, you need to have proper credentials to run the tests. <a href=https://github.com/99designs/aws-vault>AWS Vault</a> to the rescue:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>aws-vault exec &lt;profile-name&gt; -- pytest -v
+</span></span></code></pre></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button next"><a href=https://masoudkarimif.github.io/posts/masters-thesis/><span class=button__text>My Master's Thesis</span>
+<span class=button__icon>→</span></a></span></div></div></article></div><footer class=footer><div class=footer__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>masoudkf</span></a><div class=copyright><span>© 2023 Powered by
+<a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
+<span>Theme created by
+<a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFRSZRJSCV"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZFRSZRJSCV",{anonymize_ip:!1})}</script></body></html>
