@@ -11,6 +11,8 @@ DynamoDB is a fully managed, high-performance, NoSQL database service provided b
 
 DynamoDB stores data in tables. All tables must either have a Primary Key (also known as Partition Key), or a Primary Key and a Sort Key (also known as composite key). In a table that has only a partition key, no two items can have the same partition key value. In a table that has a partition key and a sort key, it's possible for multiple items to have the same partition key value. However, those items must have different sort key values.
 
+Perhaps the most important limitation of DynamoDB is that no item in a table can exceed 400KB. If you have a use case that requires storing items bigger than 400KB, you may want to use a relational database offering from AWS, such as MySQL with AWS RDS, or use a more creative approach of DynamoDB + S3, where you store the index of a file in DynamoDB (which is not going to exceed 400KB) and the data itself in S3 where any individual file can be up to 5TB.
+
 ### DynamoDB Data Types
 - **Scalar Types**: A scalar type can represent exactly one value. The scalar types are number, string, binary, Boolean, and null.
 
