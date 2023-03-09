@@ -9,7 +9,7 @@ description: "We create a DynamoDB table with Terraform, and perform CRUD operat
 ## DynamoDB 
 DynamoDB is a fully managed, high-performance, NoSQL database service provided by AWS. It is designed to provide fast and predictable performance with seamless scalability. DynamoDB is a non-relational database that allows users to store and retrieve data, while maintaining low latency and high availability. DynamoDB is a schema-less database, which means that users can store data in any format without defining a schema beforehand. 
 
-DynamoDB stores data in tables. All tables must either have a Primary Key (also known as Partition Key), or a Primary Key and a Sort Key (also knows as composite key). In a table that has only a partition key, no two items can have the same partition key value. In a table that has a partition key and a sort key, it's possible for multiple items to have the same partition key value. However, those items must have different sort key values.
+DynamoDB stores data in tables. All tables must either have a Primary Key (also known as Partition Key), or a Primary Key and a Sort Key (also known as composite key). In a table that has only a partition key, no two items can have the same partition key value. In a table that has a partition key and a sort key, it's possible for multiple items to have the same partition key value. However, those items must have different sort key values.
 
 ### DynamoDB Data Types
 - **Scalar Types**: A scalar type can represent exactly one value. The scalar types are number, string, binary, Boolean, and null.
