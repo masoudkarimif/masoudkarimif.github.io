@@ -1,7 +1,7 @@
 ---
 date: "2023-03-26"
 title: "Starting with GitHub Actions"
-tags: ["github", "github actions", "ci"]
+tags: ["github", "github-actions", "cicd"]
 author: "masoudkf"
 description: "GitHub Actions is a Continuous Integration (CI) and Continuous Delivery (CD) platform that helps you automate your software development and delivery process right from the place you store your code."
 ---
