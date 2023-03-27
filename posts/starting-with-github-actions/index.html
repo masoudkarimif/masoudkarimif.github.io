@@ -1,0 +1,122 @@
+<!doctype html><html lang=en><head><title>Starting with GitHub Actions ::
+masoudkf — Developer Blog</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Overview # GitHub Actions is a Continuous Integration (CI) and Continuous Delivery (CD) platform that helps you automate your software development and delivery process right from the place you store your code. It lets you build, test, and deploy your applications. It has a generous free-tier (2,000 minutes/month for private repos) that you most likely won&amp;rsquo;t cross.
+With GitHub Actions, you create Workflows to automate the different steps of your software delivery system."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://masoudkarimif.github.io/posts/starting-with-github-actions/><link rel=stylesheet href=/css/style.css><link rel=stylesheet href=https://masoudkarimif.github.io/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=https://masoudkarimif.github.io/img/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=https://masoudkarimif.github.io/img/favicon.png><link href=/fonts/Inter-Italic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Regular.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Medium.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-MediumItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-Bold.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=/fonts/Inter-BoldItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><meta name=twitter:card content="summary"><meta name=twitter:title content="Starting with GitHub Actions"><meta name=twitter:description content="GitHub Actions is a Continuous Integration (CI) and Continuous Delivery (CD) platform that helps you automate your software development and delivery process right from the place you store your code."><meta property="og:title" content="Starting with GitHub Actions"><meta property="og:description" content="GitHub Actions is a Continuous Integration (CI) and Continuous Delivery (CD) platform that helps you automate your software development and delivery process right from the place you store your code."><meta property="og:type" content="article"><meta property="og:url" content="https://masoudkarimif.github.io/posts/starting-with-github-actions/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2023-03-26T00:00:00+00:00"><meta property="article:modified_time" content="2023-03-26T00:00:00+00:00"><meta property="og:site_name" content="masoudkf"><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFRSZRJSCV"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZFRSZRJSCV",{anonymize_ip:!1})}</script></head><body class=light-theme><div class=container><header class=header><span class=header__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>masoudkf</span></a>
+<span class=header__right><nav class=menu><ul class="menu__inner menu__inner--desktop"><li><a href=/about>About</a></li></ul><ul class="menu__inner menu__inner--mobile"><li><a href=/about>About</a></li></ul></nav><span class=menu-trigger><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></span><span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41c10.4934.0 19-8.5066 19-19C41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg></span></span></span></header><div class=content><article class=post><h1 class=post-title>Starting with GitHub Actions</h1><div class=post-meta><time class=post-date>2023-03-26</time>
+<span class=post-author>— by masoudkf</span>
+<span class=post-read-time>— 4 min read</span></div><span class=post-tags><a href=https://masoudkarimif.github.io/tags/github/>#github</a>&nbsp;
+<a href=https://masoudkarimif.github.io/tags/github-actions/>#github-actions</a>&nbsp;
+<a href=https://masoudkarimif.github.io/tags/cicd/>#cicd</a>&nbsp;</span><div class=post-content><h2 id=overview>Overview
+<a href=#overview class=h-anchor aria-hidden=true>#</a></h2><p>GitHub Actions is a Continuous Integration (CI) and Continuous Delivery (CD) platform that helps you automate your software development and delivery process right from the place you store your code. It lets you build, test, and deploy your applications. It has a generous free-tier (2,000 minutes/month for private repos) that you most likely won&rsquo;t cross.</p><p>With GitHub Actions, you create Workflows to automate the different steps of your software delivery system. GitHub provides Linux, Mac, and Windows machines for running Workflows. GitHub Actions calls these platforms Runners; you can find the list of available runners, plus the tools that come with them <a href=https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources>here</a>. Workflows are written in <a href=https://yaml.org/>YAML</a> and stored inside <code>.github/workflows</code> folder in your GitHub repository.</p><p>Each Workflow has 4 main sections:</p><ul><li>Event (events happening in your GitHub repo that trigger your workflows, such as <code>push</code> and <code>pull_request</code>)</li><li>Job (a series of steps with a shared purpose)</li><li>Steps (phases of a job that need to happen one after another)</li><li>Actions/Command (code or commands that need to be executed in a particular step)</li></ul><h2 id=workflows>Workflows
+<a href=#workflows class=h-anchor aria-hidden=true>#</a></h2><p>As mentioned above, Workflows can automate different steps in your software delivery system, from building and testing, to deploying to production. Here&rsquo;s an example of a GitHub Actions Workflow.</p><p><code>.github/workflows/sample.yaml</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># name of the workflow.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># this is optional.</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Continuous Integration</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># events that will trigger this workflow.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># here, we only have &#34;pull_request&#34;, so the workflow will run</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># whenever we create a pull request.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># other examples: [push] and [pull_request, push]</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>pull_request]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># each workflow must have at least one job.</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># jobs run in parallel by default (we can change that).</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># each job groups together a series of steps to accomplish a purpose.</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#75715e># name of the job</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>first</span>:
+</span></span><span style=display:flex><span>    <span style=color:#75715e># the platform or OS that the workflow will run on.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># series of steps to finish the job.</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      <span style=color:#75715e># name of the step.</span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e># steps run sequentially.</span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e># this is optionale</span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>checkout</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># each step can either have &#34;uses&#34; or &#34;run&#34;.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># &#34;uses&#34; run an action written somewhere other than this workflow .</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># usually from the community.</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># this action checks out the repo code to the runner (instance)</span>
+</span></span><span style=display:flex><span>        <span style=color:#75715e># running the action</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e># another step.</span>
+</span></span><span style=display:flex><span>      <span style=color:#75715e># this step runs a bash (Ubuntu&#39;s default shell) command</span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>list files</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>ls</span>
+</span></span></code></pre></div><h3 id=test-python-code-with-github-actions>Test Python Code with GitHub Actions
+<a href=#test-python-code-with-github-actions class=h-anchor aria-hidden=true>#</a></h3><p>We&rsquo;ll be creating a GitHub Actions Workflow to test our Python code whenever we create a Pull Request. We&rsquo;ll use <a href=https://docs.pytest.org/en/7.2.x/>Pytest</a> to test our code.</p><p>We start by writing some rudimentary Python to do simple math operations. Create a <code>main.py</code> file and add the following code:</p><p><code>main.py</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add</span>(a, b):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a<span style=color:#f92672>+</span>b
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>subtract</span>(a, b):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a<span style=color:#f92672>-</span>b
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>divide</span>(a, b):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a<span style=color:#f92672>//</span>b
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>multiply</span>(a, b):
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> a<span style=color:#f92672>*</span>b
+</span></span></code></pre></div><p>Now, we create a test file named <code>test_main.py</code> in the same directory as <code>main.py</code>:</p><p><code>test_main.py</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> main <span style=color:#f92672>import</span> <span style=color:#f92672>*</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_add</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> add(<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>==</span> <span style=color:#ae81ff>10</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_substract</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> subtract(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>==</span> <span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_multiply</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> multiply(<span style=color:#ae81ff>5</span>, <span style=color:#ae81ff>5</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>==</span> <span style=color:#ae81ff>25</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>test_divide</span>():
+</span></span><span style=display:flex><span>    res <span style=color:#f92672>=</span> divide(<span style=color:#ae81ff>25</span>, <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>assert</span> res <span style=color:#f92672>==</span> <span style=color:#ae81ff>8</span>
+</span></span></code></pre></div><p>We can now run our tests locally using the <code>python -m pytest -v</code> command. Create a GitHub repository and link it to the project (current directory):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># make the current directory a git project</span>
+</span></span><span style=display:flex><span>git init
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># add the GitHub repo as a remote</span>
+</span></span><span style=display:flex><span>git remote add origin &lt;github-repo-address&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># stage everything</span>
+</span></span><span style=display:flex><span>git add -A
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># commit </span>
+</span></span><span style=display:flex><span>git commit -m<span style=color:#e6db74>&#34;initial&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># make upstream and push</span>
+</span></span><span style=display:flex><span>git push -u origin main
+</span></span></code></pre></div><p>Now, let&rsquo;s create a GitHub Actions Workflow to run our tests automatically whenever we create a Pull Request.</p><p>We create a Workflow file named <code>ci.yaml</code> in <code>.github/workflows</code>:</p><p><code>.github/workflows/ci.yaml</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Continuous Integration</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: 
+</span></span><span style=display:flex><span>- <span style=color:#ae81ff>pull_request</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>testing</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>checkout</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>install dependencies</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>pip install pytest</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>test</span>
+</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>python -m pytest -v</span>
+</span></span></code></pre></div><p>Create a new branch, commit, and push:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># create a new branch and checkout to it</span>
+</span></span><span style=display:flex><span>git checkout -b gh-action
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># stage everything</span>
+</span></span><span style=display:flex><span>git add -A
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># commit and push</span>
+</span></span><span style=display:flex><span>git commit -m<span style=color:#e6db74>&#34;adds workflow&#34;</span>
+</span></span><span style=display:flex><span>git push origin gh-action
+</span></span></code></pre></div><p>Now, we need to create a Pull Request on GitHub, and, if everything goes according to plan, our Workflow should start automatically once the Pull Request is created.</p><p><img src=https://res.cloudinary.com/mkf/image/upload/v1679895578/checks-passed_de9vy2.png alt=checks-passed></p></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button next"><a href=https://masoudkarimif.github.io/posts/schedule-lambda-with-eventbridge/><span class=button__text>Schedule Lambda Functions with AWS EventBridge</span>
+<span class=button__icon>→</span></a></span></div></div></article></div><footer class=footer><div class=footer__inner><a href=/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>masoudkf</span></a><div class=copyright><span>© 2023 Powered by
+<a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
+<span>Theme created by
+<a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span></div></div></footer><script type=text/javascript src=/bundle.min.js></script></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFRSZRJSCV"></script>
+<script>var doNotTrack=!1;if(!doNotTrack){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-ZFRSZRJSCV",{anonymize_ip:!1})}</script></body></html>
