@@ -55,17 +55,13 @@ googleAnalytics = "G-ZFRSZRJSCV"
     [languages.en.params.logo]
       logoText = "masoudkf"
       logoHomeLink = "/"
-    # or
-    #
-    # path = "/img/your-example-logo.svg"
-    # alt = "Your example logo alt text"
 
     [languages.en.menu]
+      [[languages.en.menu.main]]
+      identifier = "reads"
+      name = "Reads"
+      url = "/reads"
       [[languages.en.menu.main]]
         identifier = "about"
         name = "About"
         url = "/about"
-    #   [[languages.en.menu.main]]
-    #     identifier = "showcase"
-    #     name = "Showcase"
-    #     url = "/showcase"
