@@ -66,41 +66,37 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 <a href=#useeffect class=h-anchor aria-hidden=true>#</a></h3><p>We use <code>useEffect</code> to add side effects to our components. Side effects are what happens when a component renders or re-renders. Components (re-)render in 3 scenarios:</p><ul><li>The first time they load to the page</li><li>Every time their states change</li><li>Every time their props change</li></ul><p>We can use <code>useEffect</code> to do some stuff (side effects) after any of the above scenarios. <code>useEffect</code> accepts a function that runs our side effect, along with a dependency array. The dependency array tells <code>useEffect</code> when to re-run the function. <code>useEffect</code> always runs once: when the component is first added to the page; after that, it runs every time the items in the dependency array change. Here are some examples:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#75715e>// this runs only once the components is added to the page
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// since the dependency array is empty
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// this is a perfect place to do initializations (reading from database, etc.)
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>useEffect</span>(()=&gt;{
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>useEffect</span>(() =&gt; {
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// function to be executed
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}, [])
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}, []);
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>const</span> [<span style=color:#a6e22e>counter</span>, <span style=color:#a6e22e>setCounter</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>useState</span>(<span style=color:#ae81ff>0</span>);
 </span></span><span style=display:flex><span><span style=color:#75715e>// this runs once the component is added to the page
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// + every time &#34;counter&#34; changes
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>useEffect</span>(()=&gt;{
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>useEffect</span>(() =&gt; {
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// function to be executed
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}, [<span style=color:#a6e22e>counter</span>])
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>}, [<span style=color:#a6e22e>counter</span>]);
 </span></span></code></pre></div><h3 id=useref>useRef
 <a href=#useref class=h-anchor aria-hidden=true>#</a></h3><p>We normally don&rsquo;t need to access a DOM element directly in React, as React is declarative, meaning we manage the state of the application and React takes care of updating the DOM for us. But sometimes, we need to still access an element. The React way of doing this, is using the <code>useRef</code> hook. Basically, we create a reference and hook it up to an HTML element. Once the component is added to the page, we can use the <code>current</code> property of the reference to access the element and its properties, like we would in vanilla JavaScript. Here&rsquo;s an example of getting the height of an element, including its padding and borders:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#75715e>// creating the reference
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>ref</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useRef</span>(<span style=color:#66d9ef>null</span>);
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>useEffect</span>(()=&gt;{
+</span></span><span style=display:flex><span><span style=color:#a6e22e>useEffect</span>(() =&gt; {
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// this runs after the component is rendered
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// so we have access to the element
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>ref</span>.<span style=color:#a6e22e>current</span>.<span style=color:#a6e22e>offsetHeight</span>);
-</span></span><span style=display:flex><span>}, [])
+</span></span><span style=display:flex><span>}, []);
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#75715e>// hooking up the reference
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>return</span> (&lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>ref</span>}&gt;<span style=color:#a6e22e>some</span> <span style=color:#a6e22e>stuff</span>&lt;/<span style=color:#f92672>div</span>&gt;)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>return</span> &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>ref</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>ref</span>}&gt;<span style=color:#a6e22e>some</span> <span style=color:#a6e22e>stuff</span>&lt;/<span style=color:#f92672>div</span>&gt;;
 </span></span></code></pre></div><hr><h2 id=react-router>React Router
 <a href=#react-router class=h-anchor aria-hidden=true>#</a></h2><p>React Router gives you the ability to simulate URL navigations by loading/unloading React components. For example, if the URL is <code>/about</code>, load (show) the <code>About</code> component; if it&rsquo;s <code>/skills</code>, unload the <code>About</code> component and load the <code>Skills</code> component instead.</p><p>In order to use React Router, you first need to install it using <code>npm</code> as it doesn&rsquo;t come pre-installed with <code>create-react-app</code>. Make sure you&rsquo;re at the root of your React project and then run:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>npm install react-router-dom
 </span></span></code></pre></div><p>You can now use React Router in your project. Create a component named <code>About</code> and another one named <code>Skills</code>:</p><p><code>src/About.js</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>About</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>About</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
-</span></span><span style=display:flex><span>  )
-</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>About</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;;</span>
+</span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>About</span>;
 </span></span></code></pre></div><p><code>src/Skills.js</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Skills</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Skills</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;</span>
-</span></span><span style=display:flex><span>  )
-</span></span><span style=display:flex><span>};
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>h1</span><span style=color:#f92672>&gt;</span><span style=color:#a6e22e>Skills</span><span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/h1&gt;;</span>
+</span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Skills</span>;
 </span></span></code></pre></div><p>Then in your <code>App.js</code> file:</p><p><code>src/App.js</code>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>BrowserRouter</span>, <span style=color:#a6e22e>Routes</span>, <span style=color:#a6e22e>Route</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-router-dom&#34;</span>;
@@ -108,14 +104,14 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 </span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>Skills</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./Skills&#34;</span>;
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span>(
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
 </span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>BrowserRouter</span><span style=color:#f92672>&gt;</span>
 </span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Routes</span><span style=color:#f92672>&gt;</span>
 </span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>About</span> <span style=color:#f92672>/&gt;</span>}<span style=color:#f92672>&gt;&lt;</span><span style=color:#960050;background-color:#1e0010>/Route&gt;</span>
 </span></span><span style=display:flex><span>        <span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Route</span> <span style=color:#a6e22e>path</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/skills&#34;</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{<span style=color:#f92672>&lt;</span><span style=color:#a6e22e>Skills</span> <span style=color:#f92672>/&gt;</span>}<span style=color:#f92672>&gt;&lt;</span><span style=color:#960050;background-color:#1e0010>/Route&gt;</span>
 </span></span><span style=display:flex><span>      <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/Routes&gt;</span>
 </span></span><span style=display:flex><span>    <span style=color:#f92672>&lt;</span><span style=color:#960050;background-color:#1e0010>/BrowserRouter&gt;</span>
-</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>  );
 </span></span><span style=display:flex><span>}
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
@@ -132,7 +128,7 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>userId</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useParams</span>();
 </span></span></code></pre></div><h3 id=the-layout-route>The Layout Route
 <a href=#the-layout-route class=h-anchor aria-hidden=true>#</a></h3><p>More often than not, we want to have the same elements on every page: headers, navigations, footers. Instead of repeating them in all the page components, React Router suggests using a special route, called the Layout Route. The Layout Route is route without any <code>path</code> that wraps one or more routes. All the child routes (components) will then render what the Layout Route (component) has, plus their own stuff. Here&rsquo;s an example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span>(
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>BrowserRouter</span>&gt;
 </span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>Routes</span>&gt;
 </span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>Route</span> <span style=color:#a6e22e>element</span><span style=color:#f92672>=</span>{&lt;<span style=color:#f92672>Layout</span> /&gt;}&gt;
@@ -141,7 +137,7 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 </span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>Route</span>&gt;
 </span></span><span style=display:flex><span>      &lt;/<span style=color:#f92672>Routes</span>&gt;
 </span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>BrowserRouter</span>&gt;
-</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>  );
 </span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p>It&rsquo;s important to understand that the Layout Route is still a component. Inside the Layout component, we can use the <code>&lt;Outlet /></code> component from React Router to inject the component that matches the route inside the Layout component. Example:</p><p><code>Layout.js</code></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Outlet</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-router-dom&#34;</span>;
 </span></span><span style=display:flex><span>
@@ -155,8 +151,10 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 </span></span><span style=display:flex><span>      &lt;/<span style=color:#f92672>div</span>&gt;
 </span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>footer</span>&gt;<span style=color:#a6e22e>Footer</span>&lt;/<span style=color:#f92672>footer</span>&gt;
 </span></span><span style=display:flex><span>    &lt;/&gt;
-</span></span><span style=display:flex><span>  )
+</span></span><span style=display:flex><span>  );
 </span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>Layout</span>;
 </span></span></code></pre></div><p>For instance, if the path is <code>/skills</code>, we will render the Layout component, which will render the Skills component where the <code>&lt;Outlet /></code> is. It&rsquo;s as if we are rendering this:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span>&lt;&gt;
 </span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>header</span>&gt;<span style=color:#a6e22e>Header</span>&lt;/<span style=color:#f92672>header</span>&gt;
 </span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>id</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;content&#34;</span>&gt;
@@ -166,11 +164,11 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 </span></span><span style=display:flex><span>&lt;/&gt;
 </span></span></code></pre></div><h4 id=passing-props-to-outlet>Passing Props to Outlet
 <a href=#passing-props-to-outlet class=h-anchor aria-hidden=true>#</a></h4><p>We can also pass props to the <code>&lt;Outlet /></code> component using the <code>context</code> property. Whatever component that replaces <code>&lt;Outlet /></code> in runtime, will be able to retrieve the props using the <code>useOutletContext</code> hook from React Router. Example:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#75715e>// inside the Layout component.
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// if we want to pass more than one element, we need to pass it through an array
-</span></span></span><span style=display:flex><span><span style=color:#75715e></span>&lt;<span style=color:#f92672>Outlet</span> <span style=color:#a6e22e>context</span><span style=color:#f92672>=</span>{[<span style=color:#a6e22e>someParameter</span>, <span style=color:#a6e22e>someFunction</span>]}/&gt;
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>&lt;<span style=color:#f92672>Outlet</span> <span style=color:#a6e22e>context</span><span style=color:#f92672>=</span>{[<span style=color:#a6e22e>someParameter</span>, <span style=color:#a6e22e>someFunction</span>]} /&gt;
 </span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#75715e>// inside the component that replaces Outlet in runtime
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>//
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useOutletContext</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-router-dom&#34;</span>;
 </span></span><span style=display:flex><span><span style=color:#75715e>// since the context is an array, we can destructure
 </span></span></span><span style=display:flex><span><span style=color:#75715e>// to get the items as individual variables
@@ -179,11 +177,11 @@ We can update the DOM using a declarative approach (as opposed to imperative) We
 <a href=#usenavigate class=h-anchor aria-hidden=true>#</a></h3><p>You can use the <code>useNavigate</code> hook to navigate to a different page. This is useful when you want to do some stuff when an event happens (such as clicking a button), and then navigate to a different page afterwards:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useNavigate</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react-router-dom&#34;</span>;
 </span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>navigate</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>useNavigate</span>();
 </span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>buttonClicked</span> <span style=color:#f92672>=</span> ()=&gt; {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>buttonClicked</span> <span style=color:#f92672>=</span> () =&gt; {
 </span></span><span style=display:flex><span>  <span style=color:#75715e>// do some stuff here
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#75715e>// then go to the home page
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>  <span style=color:#a6e22e>navigate</span>(<span style=color:#e6db74>`/home`</span>);
-</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>};
 </span></span></code></pre></div></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=https://masoudkarimif.github.io/posts/netlify-react-gotchas/><span class=button__icon>←</span>
 <span class=button__text>Netlify Gotchas When Deploying a React Application</span></a></span>
 <span class="button next"><a href=https://masoudkarimif.github.io/posts/jade-super-agent/><span class=button__text>A Simple Parent Class for JADE Agents</span>
