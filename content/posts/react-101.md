@@ -6,7 +6,7 @@ author: "masoudkf"
 description: "React basics. This post is part of the course material for [ENSF 381 (W23)](https://contacts.ucalgary.ca/info/enel/courses/w23/ENSF381?destination=courses%2Fw23) at the University of Calgary."
 ---
 
-## Overview 
+## Overview
 
 React is a JavaScript library built by Facebook (now Meta) for creating user interfaces. Mainly, there are two advantages of using React:
 
@@ -28,6 +28,7 @@ There are different ways of creating and starting with a React application. Here
 - Optimizing the output for production
 
 ### Using `create-react-app`
+
 Before using `create-react-app`, make sure you have `node`, `npm`, and `npx` already installed on your system. You can check by using the following commands. If you get a version back and not `command not found`, then you're good to go.
 
 ```bash
@@ -59,11 +60,11 @@ const name = "Josh Perez";
 const element = <h1>Hello, {name}</h1>;
 ```
 
-Browsers don't support JSX right out of the box, so we need libraries to compile JSX into plain JavaScript so that browsers can understand it. But don't worry. You don't need to be concerned about those libraries. The  `create-react-app` application comes with many pre-installed libraries including JSX parsers. 
+Browsers don't support JSX right out of the box, so we need libraries to compile JSX into plain JavaScript so that browsers can understand it. But don't worry. You don't need to be concerned about those libraries. The `create-react-app` application comes with many pre-installed libraries including JSX parsers.
 
 ## Components
 
-React uses components. Basically, you break your application (and by application I mean the front-end of your application, since, as I mentioned at the beginning, React is a JavaScript framework for building user interfaces). It's always a good idea to spend some good time designing your application and breaking it into different components before writing your React code. 
+React uses components. Basically, you break your application (and by application I mean the front-end of your application, since, as I mentioned at the beginning, React is a JavaScript framework for building user interfaces). It's always a good idea to spend some good time designing your application and breaking it into different components before writing your React code.
 
 There are many ways to build a user interface with React. In one of the previous semesters, we gave the students the same project but they all submitted a completely different design at the end. Not 2 applications were the same. That's the beauty of React; you can build your application in many ways. However, not every design is good and efficient. I always say that the more time you spend in the designing and analyzing phase of your application, the more efficient your final application will be; the performance will be better and the whole process will go much smoother. If you jump into the editor and start coding right away, you might think that you are saving time, but in big projects, you will see how important the designing and analyzing phase is.
 
@@ -99,8 +100,8 @@ So, with that definition, if I have a key that I use for calling an API endpoint
 
 When it was just classes in React, there was no Hook. Hooks are a newish addition to React and if you want to write functional React (which we want in this course), you need to learn them. Basically, they are a way to deal with the states of your applications (defining them, changing them, handling them) without using classes.
 
-
 ### useState
+
 we use `useState` to create React states. Take a look at the following example:
 
 ```jsx
@@ -127,6 +128,7 @@ function Example() {
 The above example uses JavaScript destructuring to get the two values and put them in two variables: `count` and `setCount`. We talked about the JavaScript destructuring capability in previous chapters.
 
 ### useReducer
+
 In the workshops, especially the longer one, I talked about another useful hook that we can use to change a React state. That is the `useReducer` hook. So, basically, if you have a complicated logic to change your state, you might be better off using `useReducer`. But if you have a pretty simple logic, like if I click on this button, increase the value of a counter by one, then using `useState` is enough, although nothing stops you from using `useReducer` even in this situation.
 
 Here's an example of using `useReducer`:
@@ -158,7 +160,9 @@ function Counter() {
 ```
 
 ### useEffect
+
 We use `useEffect` to add side effects to our components. Side effects are what happens when a component renders or re-renders. Components (re-)render in 3 scenarios:
+
 - The first time they load to the page
 - Every time their states change
 - Every time their props change
@@ -169,37 +173,37 @@ We can use `useEffect` to do some stuff (side effects) after any of the above sc
 // this runs only once the components is added to the page
 // since the dependency array is empty
 // this is a perfect place to do initializations (reading from database, etc.)
-useEffect(()=>{
+useEffect(() => {
   // function to be executed
-}, [])
+}, []);
 ```
 
 ```jsx
 const [counter, setCounter] = useState(0);
 // this runs once the component is added to the page
 // + every time "counter" changes
-useEffect(()=>{
+useEffect(() => {
   // function to be executed
-}, [counter])
+}, [counter]);
 ```
 
 ### useRef
+
 We normally don't need to access a DOM element directly in React, as React is declarative, meaning we manage the state of the application and React takes care of updating the DOM for us. But sometimes, we need to still access an element. The React way of doing this, is using the `useRef` hook. Basically, we create a reference and hook it up to an HTML element. Once the component is added to the page, we can use the `current` property of the reference to access the element and its properties, like we would in vanilla JavaScript. Here's an example of getting the height of an element, including its padding and borders:
 
 ```jsx
 // creating the reference
 const ref = useRef(null);
 
-useEffect(()=>{
+useEffect(() => {
   // this runs after the component is rendered
   // so we have access to the element
   console.log(ref.current.offsetHeight);
-}, [])
+}, []);
 
 // hooking up the reference
-return (<div ref={ref}>some stuff</div>)
+return <div ref={ref}>some stuff</div>;
 ```
-
 
 ---
 
@@ -208,6 +212,7 @@ return (<div ref={ref}>some stuff</div>)
 React Router gives you the ability to simulate URL navigations by loading/unloading React components. For example, if the URL is `/about`, load (show) the `About` component; if it's `/skills`, unload the `About` component and load the `Skills` component instead.
 
 In order to use React Router, you first need to install it using `npm` as it doesn't come pre-installed with `create-react-app`. Make sure you're at the root of your React project and then run:
+
 ```bash
 npm install react-router-dom
 ```
@@ -215,23 +220,21 @@ npm install react-router-dom
 You can now use React Router in your project. Create a component named `About` and another one named `Skills`:
 
 `src/About.js`:
+
 ```javascript
 function About() {
-  return (
-    <h1>About</h1>
-  )
-};
+  return <h1>About</h1>;
+}
 
 export default About;
 ```
 
 `src/Skills.js`:
+
 ```javascript
 function Skills() {
-  return (
-    <h1>Skills</h1>
-  )
-};
+  return <h1>Skills</h1>;
+}
 
 export default Skills;
 ```
@@ -239,32 +242,35 @@ export default Skills;
 Then in your `App.js` file:
 
 `src/App.js`:
+
 ```javascript
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./About";
 import Skills from "./Skills";
 
 function App() {
-  return(
+  return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<About />}></Route>
         <Route path="/skills" element={<Skills />}></Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;
 ```
 
 We declared two routes:
+
 - `/` which loads the `About` component
 - `/skills` which loads the `Skills` component
 
 Run the application. It should show the `About` component. Add `/skills` to the end of the URL and you should see the `Skills` component instead.
 
 ### Page Parameters
+
 Sometimes, you need to pass a page parameter to a page component. For example, you have a component names User that shows the profile of a specifc user. In order to get their profile, you need a username, which you've decided to get from the URL. For example, the URL `yourwebsite.com/users/rick` should show the profile of the user `rick`, and `yourwebsite.com/users/alice` should show the profile of the user `alice`. `rick` and `alice` are page parameters in this example, like function parameters.
 
 It's not feasible to create a route for every single username you have, therefore you need something more dynamic. That's where page parameters come in. In React Route, you can define page parameters using the `:parameter-name` syntax inside your `path`. For example: `path="/users/:userId` will create a page parameter named `userId` which you can access using a special hook from React Router named `useParams`. Let's see an example:
@@ -288,11 +294,12 @@ const { userId } = useParams();
 ```
 
 ### The Layout Route
+
 More often than not, we want to have the same elements on every page: headers, navigations, footers. Instead of repeating them in all the page components, React Router suggests using a special route, called the Layout Route. The Layout Route is route without any `path` that wraps one or more routes. All the child routes (components) will then render what the Layout Route (component) has, plus their own stuff. Here's an example:
 
 ```jsx
 function App() {
-  return(
+  return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
@@ -301,13 +308,14 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 ```
 
 It's important to understand that the Layout Route is still a component. Inside the Layout component, we can use the `<Outlet />` component from React Router to inject the component that matches the route inside the Layout component. Example:
 
 `Layout.js`
+
 ```jsx
 import { Outlet } from "react-router-dom";
 
@@ -321,8 +329,10 @@ function Layout() {
       </div>
       <footer>Footer</footer>
     </>
-  )
+  );
 }
+
+export default Layout;
 ```
 
 For instance, if the path is `/skills`, we will render the Layout component, which will render the Skills component where the `<Outlet />` is. It's as if we are rendering this:
@@ -338,18 +348,19 @@ For instance, if the path is `/skills`, we will render the Layout component, whi
 ```
 
 #### Passing Props to Outlet
+
 We can also pass props to the `<Outlet />` component using the `context` property. Whatever component that replaces `<Outlet />` in runtime, will be able to retrieve the props using the `useOutletContext` hook from React Router. Example:
 
 ```jsx
 // inside the Layout component.
-// 
+//
 // if we want to pass more than one element, we need to pass it through an array
-<Outlet context={[someParameter, someFunction]}/>
+<Outlet context={[someParameter, someFunction]} />
 ```
 
 ```jsx
 // inside the component that replaces Outlet in runtime
-// 
+//
 import { useOutletContext } from "react-router-dom";
 // since the context is an array, we can destructure
 // to get the items as individual variables
@@ -357,16 +368,16 @@ const [someParameter, someFunction] = useOutletContext();
 ```
 
 ### useNavigate
+
 You can use the `useNavigate` hook to navigate to a different page. This is useful when you want to do some stuff when an event happens (such as clicking a button), and then navigate to a different page afterwards:
 
 ```jsx
 import { useNavigate } from "react-router-dom";
 const navigate = useNavigate();
 
-const buttonClicked = ()=> {
+const buttonClicked = () => {
   // do some stuff here
   // then go to the home page
   navigate(`/home`);
-}
+};
 ```
-
