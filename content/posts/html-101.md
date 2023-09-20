@@ -195,6 +195,8 @@ It's a very good practice to find an appropriate HTML tag for your content. If y
 
 However, in case you don't come up with an appropriate elemenet, you can use the generic elements. For block-level elements, you can use the `<div></div>` element, and for inline elements, you can use the `<span></span>` element.
 
+You can find a list of HTML semantic elements [here](https://www.w3schools.com/html/html5_semantic_elements.asp).
+
 ---
 
 ## Lists
