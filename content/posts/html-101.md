@@ -185,6 +185,8 @@ We may put inline elements inside other inline or block elements. But it's not r
 </span>
 ```
 
+You can find the full list of inline and block elements [here](https://www.w3schools.com/html/html_blocks.asp).
+
 ---
 
 ## Generic Elements
