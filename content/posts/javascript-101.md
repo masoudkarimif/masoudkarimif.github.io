@@ -554,4 +554,7 @@ element.remove();
 const button = document.getElementById("submit")
 const alarm = () => alert("Clicked")
 button.addEventListener("click", alarm)
+
+// toggle class
+element.classList.toggle("class-name");
 ```
