@@ -555,6 +555,10 @@ const button = document.getElementById("submit")
 const alarm = () => alert("Clicked")
 button.addEventListener("click", alarm)
 
-// toggle class
+// toggle a class
 element.classList.toggle("class-name");
+// add a class
+element.classList.add("class-name");
+// remove a class
+element.classList.remove("class-name");
 ```
