@@ -52,51 +52,6 @@ header {
 .post-title {
   font-weight: 900 !important; }
 
-.gr_custom_container_ {
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 10px 5px 10px 5px;
-  background-color: #FFF;
-  color: #000; }
-
-.gr_custom_header_ {
-  /* customize your Goodreads header here*/
-  border-bottom: 1px solid gray;
-  width: 100%;
-  margin-bottom: 5px;
-  text-align: center;
-  font-size: 120%; }
-
-.gr_custom_each_container_ {
-  /* customize each individual book container here */
-  width: 100%;
-  clear: both;
-  margin-bottom: 10px;
-  overflow: auto;
-  padding-bottom: 4px;
-  border-bottom: 1px solid #aaa; }
-
-.gr_custom_book_container_ {
-  /* customize your book covers here */
-  overflow: hidden;
-  height: 60px;
-  float: left;
-  margin-right: 4px;
-  width: 39px; }
-
-.gr_custom_author_ {
-  /* customize your author names here */
-  font-size: 10px; }
-
-.gr_custom_tags_ {
-  /* customize your tags here */
-  font-size: 10px;
-  color: gray; }
-
-.gr_custom_rating_ {
-  /* customize your rating stars here */
-  float: right; }
-
 @font-face {
   font-family: 'Inter';
   font-style: normal;
