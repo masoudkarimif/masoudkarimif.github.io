@@ -45,7 +45,8 @@ body.dark-theme {
 /*@media ($phone) {*/
 /*margin-top: 0;*/
 /*}*/
-.post-title, header {
+.post-title,
+header {
   font-family: 'Fira Code', monospace; }
 
 .post-title {
