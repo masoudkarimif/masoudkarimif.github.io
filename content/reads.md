@@ -1,5 +1,11 @@
 # Recent Reads
+
+  <a target="_blank" rel="nofollow" href="https://www.goodreads.com/user/show/26483728-masoud"><img alt="goodreads.com" style="border:0" src="https://s.gr-assets.com/images/widget/widget_logo.gif" /></a>
+
+<br>
+
 ---
+
 
 ### Understanding Software
 
