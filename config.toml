@@ -7,7 +7,9 @@ baseurl = "/"
 # Remove it if you use the theme as a remote Hugo Module.
 paginate = 20
 enableEmoji = true
-googleAnalytics = "G-ZFRSZRJSCV"
+
+[services.googleAnalytics]
+id = 'G-ZFRSZRJSCV'
 
 [markup.goldmark.renderer]
   unsafe= true
