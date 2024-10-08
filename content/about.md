@@ -1,1 +1,4 @@
-I'm on [LinkedIn](https://www.linkedin.com/in/masoud-karimi-fatemi/).
+---
+---
+- GitHub: [github.com/masoudkarimif](https://github.com/masoudkarimif)
+- LinkedIn: [linkedin.com/in/masoud-karimi-fatemi](https://www.linkedin.com/in/masoud-karimi-fatemi/)
