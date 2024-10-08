@@ -3,7 +3,7 @@ date: "2024-10-06"
 title: "Heaps Don't Lie; They Save Lives"
 tags: ["go", "heaps", "performance", "algorithms"]
 author: "masoudkf"
-description: "Go's `container` package helps you create heaps, although not as easy as other languages like Python do. Let's see how."
+description: "Go's `container` package helps you create heaps, although not as easy as other languages like Python do. But that makes it more fun."
 ---
 
 <br/>
