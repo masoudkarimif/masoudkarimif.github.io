@@ -172,4 +172,10 @@ func main() {
 
 You start by making a slice to back the heap, then initialize the heap using `heap.Init()` and then you can `Push` and `Pop` to and from the heap. Just remember to use the methods through the `heap` package, so `heap.Push()` and `heap.Pop()`.
 
+See the full code below:
+
+{{< gist masoudkarimif 2a5aee8455ace38f5c78b834a1d425ed>}}
+
+<br/>
+
 And there it is. Our beautiful heap, which will save lives at any emergency room. A life-saving heap, if you will.
