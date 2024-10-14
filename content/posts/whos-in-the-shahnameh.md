@@ -105,7 +105,7 @@ alphabetMap = map[rune]int{
 	'y': 24,
 	'z': 25,
 	// adding space because some of Shahnameh characters
-	// have space in them.
+	// have space in their names. e.g. Kai Khosrow.
 	' ': 26,
 }
 ```
