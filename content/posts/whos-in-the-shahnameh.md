@@ -12,7 +12,7 @@ description: "Tries are tree-like data structures used in applications such as a
 </p>
 <br/>
 
-In case you're not familiar with the Shahnameh, it's a book about Persian kings (Shahnameh means The Book of Kings). It's a masterpiece written by the Persian poet Ferdowsi. There are many stories in the book, and of course, so many characters. Read more on [Wikipedia](https://en.wikipedia.org/wiki/Shahnameh).
+In case you're not familiar with the Shahnameh, it's a book about Persian kings (Shahnameh means Book of Kings). It's a masterpiece written by the Persian poet Ferdowsi. There are many stories in the book, and of course, so many characters. Read more on [Wikipedia](https://en.wikipedia.org/wiki/Shahnameh).
 
 We want to create an application (in Go, of course) that gives us autocompletion when we're searching for a character name. For instance, when I start typing `ma`, it gives me `Manijeh`, `Manuchehr`, and `Mardas`. How? Tries to the rescue.
 
