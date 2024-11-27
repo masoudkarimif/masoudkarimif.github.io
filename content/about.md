@@ -2,4 +2,4 @@
 ---
 - GitHub: [github.com/masoudkarimif](https://github.com/masoudkarimif)
 - LinkedIn: [linkedin.com/in/masoud-karimi-fatemi](https://www.linkedin.com/in/masoud-karimi-fatemi/)
-- Goodreads: [goodreads.com/user/show/26483728-masoud](https://www.goodreads.com/user/show/26483728-masoud)
+- Goodreads: [https://www.goodreads.com/masoudkf](https://www.goodreads.com/masoudkf)
