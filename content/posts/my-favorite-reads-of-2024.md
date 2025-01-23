@@ -56,6 +56,8 @@ However, Marcus Aurelius was a religious man and a strong believer in the gods (
 
 > Remember this principle when something threatens to cause you pain: the thing itself was no misfortune at all; to endure it and prevail is great good fortune. 
 
+> When you wake up in the morning, tell yourself: The people I deal with today will be meddling, ungrateful, arrogant, dishonest, jealous, and surly. They are like this because they cannot tell good from evil.
+
 ---
 
 
