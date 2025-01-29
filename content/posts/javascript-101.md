@@ -522,7 +522,7 @@ Examples:
 
 ```javascript
 // get an element with a specific id
-document.getElementByID("element-id")
+document.getElementById("element-id")
 
 // get an array of elements with a specific class 
 document.getElementsByClassName("element-class");
